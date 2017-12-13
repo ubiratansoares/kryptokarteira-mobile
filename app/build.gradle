@@ -1,33 +1,118 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 26
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["compileSDK"]
+    buildToolsVersion globalConfiguration["buildToolsVersion"]
+
     defaultConfig {
+        minSdkVersion globalConfiguration["minSDK"]
+        targetSdkVersion globalConfiguration["targetSDK"]
         applicationId "br.ufs.hiring.stone"
-        minSdkVersion 21
-        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+
+    signingConfigs {
+        exercise {
+            storeFile file("../exercisekeystore")
+            storePassword "123456"
+            keyAlias 'exercise'
+            keyPassword "123456"
+        }
+    }
+
+    flavorDimensions "envs"
+
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+            multiDexEnabled = true
+            signingConfig signingConfigs.exercise
+        }
+
+        live {
+            signingConfig signingConfigs.exercise
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'
     }
 }
 
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation project(':core')
+
+    def dependencies = rootProject.ext.appDependencies
+    def testDependencies = rootProject.ext.appTestDependencies
+
+    implementation dependencies.kotlin
+    implementation dependencies.kotlinReflect
+    implementation dependencies.rxJava
+    implementation dependencies.rxAndroid
+    implementation dependencies.appCompat
+    implementation dependencies.design
+    implementation dependencies.materialDialogs
+    implementation dependencies.archRuntime
+    implementation dependencies.archExtensions
+    implementation dependencies.retrofit
+    implementation dependencies.retrofitRxJavaAdapter
+    implementation dependencies.retrofitGsonConverter
+    implementation dependencies.okHttpLogger
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.roboletric
+    testImplementation testDependencies.mockito
+    testImplementation testDependencies.mockitoDexMaker
+
+    mockImplementation testDependencies.mockito
+    mockImplementation testDependencies.mockitoDexMaker
+
+    androidTestImplementation testDependencies.espressoCore
+    androidTestImplementation testDependencies.espressoRules
+    androidTestImplementation testDependencies.espressoRunner
+    androidTestImplementation(testDependencies.barista) {
+        exclude group: 'com.android.support'
+    }
+}
+
+
+configurations.all {
+    resolutionStrategy {
+        forcedModules = [
+                rootProject.ext.forceResolution.kotlin,
+                rootProject.ext.forceResolution.kotlinReflect,
+                rootProject.ext.forceResolution.espressoCore,
+                rootProject.ext.forceResolution.espressoRunner,
+                rootProject.ext.forceResolution.espressoRules
+        ]
+    }
 }
