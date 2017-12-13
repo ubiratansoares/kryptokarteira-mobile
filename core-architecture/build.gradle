@@ -55,16 +55,13 @@ dependencies {
     implementation dependencies.kotlinReflect
     implementation dependencies.rxJava
     implementation dependencies.retrofit
-    implementation dependencies.retrofitRxJavaAdapter
-    implementation dependencies.retrofitGsonConverter
-    implementation dependencies.okHttpLogger
     implementation dependencies.archRuntime
     implementation dependencies.archExtensions
+    implementation dependencies.gson
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockito
     testImplementation testDependencies.assertj
-    testImplementation testDependencies.mockWebServer
     testImplementation testDependencies.roboletric
 }
 

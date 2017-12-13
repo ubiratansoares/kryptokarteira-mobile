@@ -17,6 +17,7 @@ ext {
     kotlinVersion = '1.2.0'
 
     //Libraries
+    gsonVersion = '2.7'
     okHttpVersion = '3.8.0'
     retrofitVersion = '2.3.0'
     rxJavaVersion = '2.1.6'
@@ -44,26 +45,32 @@ ext {
             espressoRules : "com.android.support.test:rules:${espressoToolsVersion}",
     ]
 
-    coreDependencies = [
+    networkingDependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
             kotlinReflect        : "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
             rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
-            archRuntime          : "android.arch.lifecycle:runtime:${archComponentsVersion}",
-            archExtensions       : "android.arch.lifecycle:extensions:${archExtensionsVersion}",
+            okHttpLogger         : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    ]
+
+    coreDependencies = [
+            kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            kotlinReflect : "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            retrofit      : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            archRuntime   : "android.arch.lifecycle:runtime:${archComponentsVersion}",
+            archExtensions: "android.arch.lifecycle:extensions:${archExtensionsVersion}",
+            gson          : "com.google.code.gson:gson:${gsonVersion}"
     ]
 
     coreTestDependencies = [
-            junit        : "junit:junit:${jUnitVersion}",
-            mockito      : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
-            assertj      : "org.assertj:assertj-core:${assertJVersion}",
-            roboletric   : "org.robolectric:robolectric:${roboletricVersion}",
-            mockWebServer: "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
+            junit     : "junit:junit:${jUnitVersion}",
+            mockito   : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj   : "org.assertj:assertj-core:${assertJVersion}",
+            roboletric: "org.robolectric:robolectric:${roboletricVersion}",
     ]
-
 
     appDependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
