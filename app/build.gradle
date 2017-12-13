@@ -68,7 +68,7 @@ android {
 
 dependencies {
 
-    implementation project(':core')
+    implementation project(':core-architecture')
 
     def dependencies = rootProject.ext.appDependencies
     def testDependencies = rootProject.ext.appTestDependencies
