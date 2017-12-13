@@ -45,7 +45,7 @@ ext {
             espressoRules : "com.android.support.test:rules:${espressoToolsVersion}",
     ]
 
-    networkingDependencies = [
+    dataDependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
             kotlinReflect        : "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
             rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
