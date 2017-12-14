@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import br.ufs.architecture.core.errors.InfrastructureError
 import br.ufs.architecture.core.errors.NetworkingIssue
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
@@ -18,6 +17,7 @@ import br.ufs.hiring.stone.R
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
 import br.ufs.hiring.stone.widgets.action
 import br.ufs.hiring.stone.widgets.colorForActionText
+import br.ufs.hiring.stone.widgets.toast
 import com.github.salomonbrys.kodein.LazyKodein
 import com.github.salomonbrys.kodein.android.appKodein
 import com.github.salomonbrys.kodein.instance
@@ -81,6 +81,7 @@ class OnboardingActivity : AppCompatActivity(),
             requestOnboarding()
         }
     }
+
     private fun releaseDisposable() {
         disposable.dispose()
     }
@@ -117,28 +118,20 @@ class OnboardingActivity : AppCompatActivity(),
                 .compose(presenter)
                 .doOnSubscribe { hideGiveaway() }
                 .subscribe(
-                        {
-                            proceedToHome()
-                        },
-                        {
-                            Log.e("Onboarding", "Fail!")
-                        }
+                        { proceedToHome() },
+                        { Log.e(TAG, "Fail!") }
                 )
     }
 
     private fun proceedToHome() {
-        toast("Cadastrado com sucesso!")
+        toast(R.string.toast_onboard_success)
     }
 
     private fun hideGiveaway() {
         giveawayContainer.visibility = View.INVISIBLE
     }
 
-    private fun showGiveaway() {
-        giveawayContainer.visibility = View.VISIBLE
-    }
-
-    private fun toast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private companion object {
+        val TAG = OnboardingActivity::class.simpleName
     }
 }

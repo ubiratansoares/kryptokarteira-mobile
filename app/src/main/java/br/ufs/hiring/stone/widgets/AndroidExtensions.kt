@@ -1,10 +1,10 @@
 package br.ufs.hiring.stone.widgets
 
+import android.app.Activity
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
+import android.widget.Toast
 
 /**
  *
@@ -22,10 +22,10 @@ fun Snackbar.action(actionText: Int, block: (Any) -> Unit): Snackbar {
     return this
 }
 
-fun TextView.compoundDrawableLeft(drawableResource: Int) {
-    this.setCompoundDrawablesWithIntrinsicBounds(drawableResource, 0, 0, 0)
+fun Activity.toast(messageResource : Int) {
+    Toast.makeText(this, messageResource, Toast.LENGTH_SHORT).show()
 }
 
-inline fun <reified T : View> LayoutInflater.typedInflation(layoutResource: Int): T {
-    return inflate(layoutResource, null) as T
+fun Activity.toast(message : String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
