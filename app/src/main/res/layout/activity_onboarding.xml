@@ -3,22 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/onboardingRoot"
     tools:context="br.ufs.hiring.stone.onboarding.OnboardingActivity">
 
-    <TextView
-        android:id="@+id/message"
+    <ProgressBar
+        android:id="@+id/loadingIndicator"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/forty_eight_dips"
+        android:layout_height="@dimen/forty_eight_dips"
         android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/view_error_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:layout_gravity="center" />
 
-    <ProgressBar
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+    <include layout="@layout/view_giveaway_screen" />
 
 </FrameLayout>
