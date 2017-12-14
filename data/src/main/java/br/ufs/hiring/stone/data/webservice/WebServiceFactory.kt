@@ -20,7 +20,8 @@ object WebServiceFactory {
     private val BASE_URL = "https://kryptokarteira.herokuapp.com/api"
     private val DEFAULT_TIMEOUT_SECONDS = 15L
 
-    fun create(debuggable: Boolean = false): KryptoKarteiraWebService {
+    fun create(apiURL: String = BASE_URL,
+               debuggable: Boolean = false): KryptoKarteiraWebService {
 
         val logger = createLogger(debuggable)
         val httpClient = createHttpClient(logger = logger)
@@ -28,7 +29,7 @@ object WebServiceFactory {
         val rxAdapter = RxJava2CallAdapterFactory.create()
 
         val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(apiURL)
                 .client(httpClient)
                 .addConverterFactory(converter)
                 .addCallAdapterFactory(rxAdapter)
