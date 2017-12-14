@@ -6,6 +6,7 @@ import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.models.WalletPayload
 import io.reactivex.Completable
 import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers
 
 /**
  *
@@ -14,9 +15,9 @@ import io.reactivex.Scheduler
  */
 
 class OnboardingInfrastructure internal constructor(
-        private val worker: Scheduler,
         private val storage: WalletStorage,
-        private val webService: KryptoKarteiraWebService) : ReclaimGiveaway {
+        private val webService: KryptoKarteiraWebService,
+        private val worker: Scheduler = Schedulers.trampoline()) : ReclaimGiveaway {
 
     override fun now(): Completable {
         return webService.newWallet()

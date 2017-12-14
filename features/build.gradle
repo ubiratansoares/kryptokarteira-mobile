@@ -8,6 +8,7 @@ dependencies {
     implementation project(':core-architecture')
 
     implementation libs.rxJava
+    implementation libs.gson
 
     libs.kotlinRelated.each { implementation it }
     libs.archComponentsRelated.each { implementation it }
