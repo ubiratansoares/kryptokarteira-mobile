@@ -1,16 +1,16 @@
 apply from: "../android-module.gradle"
 
 dependencies {
-    def dependencies = rootProject.ext.featureDependencies
-    def testDependencies = rootProject.ext.featureTestDependencies.values()
+
+    def libs = rootProject.ext
 
     implementation project(':data')
     implementation project(':core-architecture')
-    implementation dependencies.kotlin
-    implementation dependencies.rxJava
-    implementation dependencies.archRuntime
-    implementation dependencies.archExtensions
 
-    testDependencies.each { library -> testImplementation library}
+    implementation libs.rxJava
+
+    libs.kotlinRelated.each { implementation it }
+    libs.archComponentsRelated.each { implementation it }
+    libs.unitTestingAndroidRelated.each { testImplementation it }
 
 }
