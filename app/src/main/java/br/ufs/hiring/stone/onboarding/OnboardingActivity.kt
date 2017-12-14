@@ -118,13 +118,16 @@ class OnboardingActivity : AppCompatActivity(),
                 .doOnSubscribe { hideGiveaway() }
                 .subscribe(
                         {
-                            Log.v("Onboarding", "Success!")
-                            toast("Cadastrado com sucesso!")
+                            proceedToHome()
                         },
                         {
                             Log.e("Onboarding", "Fail!")
                         }
                 )
+    }
+
+    private fun proceedToHome() {
+        toast("Cadastrado com sucesso!")
     }
 
     private fun hideGiveaway() {
