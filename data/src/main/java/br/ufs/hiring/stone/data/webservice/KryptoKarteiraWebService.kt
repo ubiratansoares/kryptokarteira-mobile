@@ -19,14 +19,14 @@ import retrofit2.http.Path
 
 interface KryptoKarteiraWebService {
 
-    @GET("/v1/wallet/new")
+    @GET("v1/wallet/new")
     fun newWallet(): Observable<WalletPayload>
 
-    @GET("/v1/home/{walletId}/info")
+    @GET("v1/home/{walletId}/info")
     fun home(
             @Path("walletId") owner: String): Single<HomePayload>
 
-    @POST("/v1/home/{walletId}/transaction")
+    @POST("v1/home/{walletId}/transaction")
     fun transaction(
             @Path("walletId") owner: String,
             @Body description: NewTransactionBody): Single<TransactionResultPayload>

@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
  *
  */
 
-class OnboardingInfrastructure internal constructor(
+class OnboardingInfrastructure (
         private val storage: WalletStorage,
         private val webService: KryptoKarteiraWebService,
         private val worker: Scheduler = Schedulers.trampoline()) : ReclaimGiveaway {

@@ -78,9 +78,9 @@ dependencies {
     implementation libs.rxAndroid
     implementation libs.gson
     implementation libs.hawk
-    implementation libs.kodein
 
     libs.kotlinRelated.each { implementation it }
+    libs.kodeinRelated.each { implementation it }
     libs.retrofitRelated.each { implementation it }
     libs.archComponentsRelated.each { implementation it }
     libs.mobileUIRelated.each { implementation it }
@@ -93,12 +93,7 @@ dependencies {
 
 configurations.all {
     resolutionStrategy {
-        forcedModules = [
-                rootProject.ext.forceResolution.kotlin,
-                rootProject.ext.forceResolution.kotlinReflect,
-                rootProject.ext.forceResolution.espressoCore,
-                rootProject.ext.forceResolution.espressoRunner,
-                rootProject.ext.forceResolution.espressoRules
-        ]
+        def libs = rootProject.ext
+        libs.toBeForced.each { force it}
     }
 }

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 
 object WebServiceFactory {
 
-    private val BASE_URL = "https://kryptokarteira.herokuapp.com/api"
+    private val BASE_URL = "https://kryptokarteira.herokuapp.com/api/"
     private val DEFAULT_TIMEOUT_SECONDS = 15L
 
     fun create(apiURL: String = BASE_URL,
@@ -38,15 +38,26 @@ object WebServiceFactory {
         return retrofit.create(KryptoKarteiraWebService::class.java)
     }
 
-
     private fun createLogger(debuggable: Boolean): Interceptor {
         val loggingLevel = if (debuggable) Level.BODY else Level.NONE
         return HttpLoggingInterceptor().apply { level = loggingLevel }
     }
 
+    private fun authorizer(): Interceptor {
+        return Interceptor { chain ->
+            val request = chain.request()
+
+            val authorized = request.newBuilder()
+                    .addHeader("Authorization", "8aaacf6a-cf13-4378-a33d-0b1dec00ad16")
+                    .build()
+            chain.proceed(authorized)
+        }
+    }
+
     private fun createHttpClient(logger: Interceptor): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(logger)
+                .addInterceptor(authorizer())
                 .connectTimeout(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .build()

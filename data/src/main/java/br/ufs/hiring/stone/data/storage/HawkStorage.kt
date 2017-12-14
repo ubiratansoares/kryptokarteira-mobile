@@ -10,7 +10,7 @@ import com.orhanobut.hawk.Hawk
  *
  */
 
-internal class HawkStorage(context: Context) : WalletStorage {
+class HawkStorage(context: Context) : WalletStorage {
 
     init {
         Hawk.init(context).build()
