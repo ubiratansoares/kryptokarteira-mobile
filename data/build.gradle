@@ -1,23 +1,13 @@
-apply plugin: 'kotlin'
+apply from: "../android-module.gradle"
 
 dependencies {
-    def dependencies = rootProject.ext.dataDependencies
 
-    implementation dependencies.kotlin
-    implementation dependencies.rxJava
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitRxJavaAdapter
-    implementation dependencies.retrofitGsonConverter
-    implementation dependencies.okHttpLogger
-}
+    def libs = rootProject.ext
 
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = rootProject.ext.kotlinJVMTarget
-    }
-}
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = rootProject.ext.kotlinJVMTarget
-    }
+    implementation libs.rxJava
+
+    libs.kotlinRelated.each { implementation it }
+    libs.retrofitRelated.each { implementation it }
+    libs.unitTestingAndroidRelated.each { testImplementation it }
+
 }
