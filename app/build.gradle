@@ -68,40 +68,26 @@ android {
 
 dependencies {
 
+    def libs = rootProject.ext
+
+    implementation project(':data')
     implementation project(':core-architecture')
+    implementation project(':features')
 
-    def dependencies = rootProject.ext.appDependencies
-    def testDependencies = rootProject.ext.appTestDependencies
+    implementation libs.rxJava
+    implementation libs.rxAndroid
+    implementation libs.gson
+    implementation libs.hawk
+    implementation libs.kodein
 
-    implementation dependencies.kotlin
-    implementation dependencies.kotlinReflect
-    implementation dependencies.rxJava
-    implementation dependencies.rxAndroid
-    implementation dependencies.appCompat
-    implementation dependencies.design
-    implementation dependencies.materialDialogs
-    implementation dependencies.archRuntime
-    implementation dependencies.archExtensions
-    implementation dependencies.retrofit
-    implementation dependencies.retrofitRxJavaAdapter
-    implementation dependencies.retrofitGsonConverter
-    implementation dependencies.okHttpLogger
+    libs.kotlinRelated.each { implementation it }
+    libs.retrofitRelated.each { implementation it }
+    libs.archComponentsRelated.each { implementation it }
+    libs.mobileUIRelated.each { implementation it }
 
-    testImplementation testDependencies.junit
-    testImplementation testDependencies.assertj
-    testImplementation testDependencies.roboletric
-    testImplementation testDependencies.mockito
-    testImplementation testDependencies.mockitoDexMaker
-
-    mockImplementation testDependencies.mockito
-    mockImplementation testDependencies.mockitoDexMaker
-
-    androidTestImplementation testDependencies.espressoCore
-    androidTestImplementation testDependencies.espressoRules
-    androidTestImplementation testDependencies.espressoRunner
-    androidTestImplementation(testDependencies.barista) {
-        exclude group: 'com.android.support'
-    }
+    libs.unitTestingAndroidRelated.each { testImplementation it }
+    libs.mockitoDexRelated.each { mockImplementation it }
+    libs.instrumentationTestingRelated.each { androidTestImplementation it }
 }
 
 
