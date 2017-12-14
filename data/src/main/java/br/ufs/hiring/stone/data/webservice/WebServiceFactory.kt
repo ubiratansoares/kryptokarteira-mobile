@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.webservice
+package br.ufs.hiring.stone.data.webservice
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

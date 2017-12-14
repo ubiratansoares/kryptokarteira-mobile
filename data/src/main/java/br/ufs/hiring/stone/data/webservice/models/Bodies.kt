@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.webservice.models
+package br.ufs.hiring.stone.data.webservice.models
 
 /**
  *

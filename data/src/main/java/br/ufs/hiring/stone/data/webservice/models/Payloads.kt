@@ -1,4 +1,6 @@
-package br.ufs.hiring.stone.webservice.models
+package br.ufs.hiring.stone.data.webservice.models
+
+import br.ufs.hiring.stone.data.storage.WalletOwner
 
 /**
  *
@@ -6,7 +8,6 @@ package br.ufs.hiring.stone.webservice.models
  *
  */
 
-class NewWalletPayload
-class WalletPayload
+class WalletPayload(val owner : WalletOwner)
 class HomePayload
 class TransactionResultPayload

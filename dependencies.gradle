@@ -20,7 +20,7 @@ ext {
     gsonVersion = '2.7'
     okHttpVersion = '3.8.0'
     retrofitVersion = '2.3.0'
-    rxJavaVersion = '2.1.6'
+    rxJavaVersion = '2.1.7'
     rxAndroidVersion = '2.0.1'
     supportLibraryVersion = '27.0.1'
     archComponentsVersion = '1.0.3'
@@ -72,6 +72,21 @@ ext {
             roboletric: "org.robolectric:robolectric:${roboletricVersion}",
     ]
 
+    featureDependencies = [
+            kotlin        : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            archRuntime   : "android.arch.lifecycle:runtime:${archComponentsVersion}",
+            archExtensions: "android.arch.lifecycle:extensions:${archExtensionsVersion}"
+    ]
+
+    featureTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            mockito      : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}",
+            roboletric   : "org.robolectric:robolectric:${roboletricVersion}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
+    ]
+
     appDependencies = [
             kotlin               : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
             kotlinReflect        : "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}",
@@ -101,4 +116,13 @@ ext {
             barista        : "com.schibsted.spain:barista:${baristaVersion}"
     ]
 
+    unitTestDependencies = [
+            junit        : "junit:junit:${jUnitVersion}",
+            mockito      : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            assertj      : "org.assertj:assertj-core:${assertJVersion}",
+            roboletric   : "org.robolectric:robolectric:${roboletricVersion}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${okHttpVersion}"
+    ]
 }
+
+

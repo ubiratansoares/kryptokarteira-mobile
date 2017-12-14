@@ -1,8 +1,6 @@
 package br.ufs.architecture.core.presentation.util
 
-import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import io.reactivex.ObservableTransformer
+import io.reactivex.*
 import io.reactivex.internal.operators.observable.ObservableNever
 
 /**
@@ -11,16 +9,23 @@ import io.reactivex.internal.operators.observable.ObservableNever
  *
  */
 
-class Replayer<T> : ObservableTransformer<T, T> {
+class Replayer :
+        ObservableTransformer<Any, Any>,
+        CompletableTransformer {
 
-    override fun apply(upstream: Observable<T>): ObservableSource<T> {
+    override fun apply(upstream: Completable): CompletableSource {
+        return upstream.cache()
+    }
+
+    override fun apply(upstream: Observable<Any>): ObservableSource<Any> {
         return upstream
                 .replay(BUFFER_COUNT)
                 .autoConnect(MAX_SUBSCRIBERS)
     }
 
     companion object {
-        val CLEAR_STATE: Observable<*> = ObservableNever.INSTANCE
+        val OBSERVABLE_NEVER: Observable<*> = ObservableNever.INSTANCE
+        val COMPLETABLE_NEVER: Completable = Completable.never()
         val MAX_SUBSCRIBERS = 1
         val BUFFER_COUNT = 1
     }
