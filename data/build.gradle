@@ -4,6 +4,8 @@ dependencies {
 
     def libs = rootProject.ext
 
+    implementation project(':core-architecture')
+    implementation libs.hawk
     implementation libs.rxJava
 
     libs.kotlinRelated.each { implementation it }

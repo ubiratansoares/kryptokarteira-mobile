@@ -1,6 +1,8 @@
 package br.ufs.hiring.stone.features.tests
 
 import br.ufs.architecture.core.errors.InfrastructureError
+import br.ufs.architecture.core.errors.InfrastructureError.RemoteSystemDown
+import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
 import br.ufs.architecture.core.errors.NetworkingIssue
 import br.ufs.hiring.stone.data.FileFromResources
 import br.ufs.hiring.stone.data.storage.WalletStorage
@@ -10,12 +12,14 @@ import br.ufs.hiring.stone.data.webservice.models.WalletPayload
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Observable
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers.anyString
 import java.io.IOException
 
 /**
@@ -44,13 +48,7 @@ class OnboardingInfrastructureTests {
 
     @Test fun `should integrate successfully with notice, exposing returned data`() {
 
-        val json = FileFromResources("new_wallet_200OK.json")
-
-        server.enqueue(
-                MockResponse()
-                        .setResponseCode(200)
-                        .setBody(json)
-        )
+        `server returns a new wallet`()
 
         infrastructure.now()
                 .test()
@@ -60,20 +58,20 @@ class OnboardingInfrastructureTests {
 
     @Test fun `should integrate handling error 4XY`() {
 
-        server.enqueue(MockResponse().setResponseCode(404))
+        `request fails with`(code = 404)
 
         infrastructure.now()
                 .test()
-                .assertError { it == InfrastructureError.UndesiredResponse }
+                .assertError { it == UndesiredResponse }
     }
 
     @Test fun `should integrate handling error 5XY`() {
 
-        server.enqueue(MockResponse().setResponseCode(503))
+        `request fails with`(code = 503)
 
         infrastructure.now()
                 .test()
-                .assertError { it == InfrastructureError.RemoteSystemDown }
+                .assertError { it == RemoteSystemDown }
     }
 
     @Test fun `should integrate handling networking issue`() {
@@ -90,5 +88,36 @@ class OnboardingInfrastructureTests {
                 .now()
                 .test()
                 .assertError { it == NetworkingIssue.ConnectionSpike }
+    }
+
+    @Test fun `should integrate handling storage access issue`() {
+
+        `server returns a new wallet`()
+
+        whenever(storage.storeOwner(anyString()))
+                .then {
+                    throw InfrastructureError.StorageAccessError
+                }
+
+        infrastructure.now()
+                .test()
+                .assertError { it == InfrastructureError.StorageAccessError }
+
+    }
+
+    private fun `request fails with`(code: Int) {
+        server.enqueue(
+                MockResponse().setResponseCode(code)
+        )
+    }
+
+    private fun `server returns a new wallet`() {
+        val json = FileFromResources("new_wallet_200OK.json")
+
+        server.enqueue(
+                MockResponse()
+                        .setResponseCode(200)
+                        .setBody(json)
+        )
     }
 }
