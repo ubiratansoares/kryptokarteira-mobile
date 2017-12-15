@@ -52,8 +52,8 @@ ext {
     kotlinRelated = kotlin.values()
 
     kodein = [
-            kodein : "com.github.salomonbrys.kodein:kodein:${kodeinVersion}",
-            kodeinAndroid:"com.github.salomonbrys.kodein:kodein-android:${kodeinVersion}"
+            kodein       : "com.github.salomonbrys.kodein:kodein:${kodeinVersion}",
+            kodeinAndroid: "com.github.salomonbrys.kodein:kodein-android:${kodeinVersion}"
     ]
 
     kodeinRelated = kodein.values()
@@ -77,6 +77,7 @@ ext {
     mobileUI = [
             appCompat      : "com.android.support:appcompat-v7:${supportLibraryVersion}",
             design         : "com.android.support:design:${supportLibraryVersion}",
+            gridLayout     : "com.android.support:gridlayout-v7:${supportLibraryVersion}",
             materialDialogs: "com.afollestad.material-dialogs:core:${materialDialogsVersion}",
     ]
 

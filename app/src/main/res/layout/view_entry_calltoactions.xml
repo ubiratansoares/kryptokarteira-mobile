@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/entry_background"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/sellButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="@dimen/sixteen_dips"
+        android:text="@string/button_sell"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/primary"
+        android:theme="@style/FlatButton" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="@dimen/thirtytwo_dips"
+        android:layout_gravity="center_vertical"
+        android:background="@color/primary" />
+
+    <Button
+        android:id="@+id/buyButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="@dimen/sixteen_dips"
+        android:text="@string/button_buy"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/primary"
+        android:theme="@style/FlatButton" />
+
+</LinearLayout>

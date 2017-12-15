@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/sixteen_dips">
+
+    <ImageView
+        android:layout_marginTop="4dp"
+        android:src="@drawable/img_coin"
+        app:layout_column="0"
+        app:layout_row="0" />
+
+    <TextView
+        android:id="@+id/currencyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/eight_dips"
+        android:text="Bitcoin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_column="1"
+        app:layout_row="0"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/transactionType"
+        android:background="@color/accent"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp"
+        android:text="COMPRA"
+        android:textColor="@android:color/white"
+        app:layout_column="2"
+        app:layout_gravity="right|center_vertical"
+        app:layout_row="0" />
+
+    <TextView
+        android:id="@+id/transactionTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:paddingLeft="@dimen/eight_dips"
+        android:text="TOTAL = 1 BTC"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_column="1"
+        app:layout_row="1"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/transactionDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-24dp"
+        android:text="em 29/02/2017"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_column="2"
+        app:layout_gravity="right|center_vertical"
+        app:layout_row="1"
+        tools:ignore="RtlHardcoded" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/sixteen_dips"
+        android:layout_marginTop="-10dp"
+        android:background="@color/accent"
+        app:layout_column="0"
+        app:layout_row="1" />
+</android.support.v7.widget.GridLayout>
