@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">KryptoKarteira</string>
+    <string name="app_name">Krypto Karteira</string>
     <string name="error_server_down">Há um problema com nossos servidores, estamos trabalhando para corrigí-lo</string>
     <string name="error_undesired_response">Houve um erro ao receber as informações, estamos trabalhando para entender o problema</string>
     <string name="error_internet_connection">Houve um erro de conectividade</string>

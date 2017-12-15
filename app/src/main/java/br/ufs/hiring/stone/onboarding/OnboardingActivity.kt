@@ -15,8 +15,10 @@ import br.ufs.architecture.core.presentation.networking.NetworkingErrorView
 import br.ufs.architecture.core.presentation.util.screenProvider
 import br.ufs.hiring.stone.R
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
+import br.ufs.hiring.stone.wallet.WalletActivity
 import br.ufs.hiring.stone.widgets.action
 import br.ufs.hiring.stone.widgets.colorForActionText
+import br.ufs.hiring.stone.widgets.launch
 import br.ufs.hiring.stone.widgets.toast
 import com.github.salomonbrys.kodein.LazyKodein
 import com.github.salomonbrys.kodein.android.appKodein
@@ -125,6 +127,8 @@ class OnboardingActivity : AppCompatActivity(),
 
     private fun proceedToHome() {
         toast(R.string.toast_onboard_success)
+        launch(WalletActivity::class)
+        finish()
     }
 
     private fun hideGiveaway() {
