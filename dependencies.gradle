@@ -14,7 +14,7 @@ ext {
 
     // Kotlin Support
     kotlinJVMTarget = "1.6"
-    kotlinVersion = '1.2.0'
+    kotlinVersion = '1.2.10'
 
     //Libraries
     gsonVersion = '2.7'
