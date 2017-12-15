@@ -1,10 +1,13 @@
 package br.ufs.hiring.stone.features.tests
 
 
+import br.ufs.hiring.stone.features.onboarding.GiveawayStatus
+import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
 import br.ufs.hiring.stone.features.onboarding.ReclaimGiveaway
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
+import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,11 +29,14 @@ class OnboardingScreenTests {
         usecase = mock()
         screen = OnboardingScreen(usecase)
 
+        val statusChecking: Observable<GiveawayStatus> = Observable.just(Received)
+
         val execution = Completable.fromAction {
             // Does not matter
         }
 
         whenever(usecase.now()).thenReturn(execution)
+        whenever(usecase.checkStatus()).thenReturn(statusChecking)
     }
 
     @Test fun `perform onboarding with success`() {
@@ -40,6 +46,15 @@ class OnboardingScreenTests {
                 .assertComplete()
 
         `verify onboarding requested with`(attempts = 1)
+    }
+
+    @Test fun `check for status with success`() {
+
+        screen.haveReceivedGiveway()
+                .test()
+                .assertComplete()
+                .assertNoErrors()
+                .assertValue { it == Received }
     }
 
     @Test fun `replay previously executed onboarding request`() {
