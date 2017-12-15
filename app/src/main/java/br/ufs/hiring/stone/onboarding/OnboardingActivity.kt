@@ -14,6 +14,7 @@ import br.ufs.architecture.core.presentation.loading.LoadingView
 import br.ufs.architecture.core.presentation.networking.NetworkingErrorView
 import br.ufs.architecture.core.presentation.util.screenProvider
 import br.ufs.hiring.stone.R
+import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
 import br.ufs.hiring.stone.wallet.WalletActivity
 import br.ufs.hiring.stone.widgets.action
@@ -24,12 +25,11 @@ import com.github.salomonbrys.kodein.LazyKodein
 import com.github.salomonbrys.kodein.android.appKodein
 import com.github.salomonbrys.kodein.instance
 import com.github.salomonbrys.kodein.with
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
 import kotlinx.android.synthetic.main.activity_onboarding.*
 import kotlinx.android.synthetic.main.view_error_feedback.*
 import kotlinx.android.synthetic.main.view_giveaway_screen.*
-import kotlin.properties.Delegates
 
 class OnboardingActivity : AppCompatActivity(),
         LoadingView, NetworkingErrorView, ErrorStateView {
@@ -38,7 +38,7 @@ class OnboardingActivity : AppCompatActivity(),
     private val presenter by kodein.with(this).instance<BehaviorsPresenter>()
     private val screen by screenProvider { kodein.value.instance<OnboardingScreen>() }
 
-    private var disposable by Delegates.notNull<Disposable>()
+    private val subscriptions by lazy { CompositeDisposable() }
 
     override fun showLoading() = Action {
         loadingIndicator.visibility = View.VISIBLE
@@ -79,13 +79,12 @@ class OnboardingActivity : AppCompatActivity(),
     }
 
     private fun setupViews() {
-        onboardButton.setOnClickListener {
-            requestOnboarding()
-        }
+        checkForStatus()
+        onboardButton.setOnClickListener { requestOnboarding() }
     }
 
     private fun releaseDisposable() {
-        disposable.dispose()
+        subscriptions.clear()
     }
 
     private fun callToAction(
@@ -115,18 +114,31 @@ class OnboardingActivity : AppCompatActivity(),
         feedbackContainer.setState(error)
     }
 
+    private fun checkForStatus() {
+        val execution = screen.haveReceivedGiveway().
+                subscribe {
+                    if (it == Received) proceedToHome()
+                }
+
+        subscriptions.add(execution)
+    }
+
     private fun requestOnboarding(forceInvalidation: Boolean = false) {
-        disposable = screen.performOnboard(forceInvalidation)
+        val execution = screen.performOnboard(forceInvalidation)
                 .compose(presenter)
                 .doOnSubscribe { hideGiveaway() }
                 .subscribe(
-                        { proceedToHome() },
-                        { Log.e(TAG, "Fail!") }
+                        {
+                            toast(R.string.toast_onboard_success)
+                            proceedToHome()
+                        },
+                        { Log.e(TAG, "Failed -> $it") }
                 )
+
+        subscriptions.add(execution)
     }
 
     private fun proceedToHome() {
-        toast(R.string.toast_onboard_success)
         launch(WalletActivity::class)
         finish()
     }

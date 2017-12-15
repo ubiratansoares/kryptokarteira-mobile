@@ -1,6 +1,7 @@
 package br.ufs.hiring.stone.features.onboarding
 
 import io.reactivex.Completable
+import io.reactivex.Observable
 
 /**
  *
@@ -11,5 +12,7 @@ import io.reactivex.Completable
 interface ReclaimGiveaway {
 
     fun now(): Completable
+
+    fun checkStatus(): Observable<GiveawayStatus>
 
 }

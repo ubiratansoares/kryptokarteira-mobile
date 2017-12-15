@@ -3,6 +3,7 @@ package br.ufs.hiring.stone.widgets
 import android.app.Activity
 import android.content.Intent
 import android.support.design.widget.Snackbar
+import android.support.v4.app.ActivityOptionsCompat.makeCustomAnimation
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Toast
@@ -33,6 +34,13 @@ fun Activity.toast(message: String) {
 }
 
 fun <T : Any> Activity.launch(target: KClass<T>) {
+    val fade =
+            makeCustomAnimation(
+                    this,
+                    android.R.anim.fade_in,
+                    android.R.anim.fade_out
+            ).toBundle()
+
     val intent = Intent(this, target.java)
-    startActivity(intent)
+    startActivity(intent, fade)
 }

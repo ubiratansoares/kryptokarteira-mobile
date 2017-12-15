@@ -14,4 +14,8 @@ interface WalletStorage {
 
     fun retrieveOwner(): WalletOwner
 
+    companion object {
+        val NO_WALLET = "no.wallet"
+    }
+
 }
