@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/entry_background"
-    android:orientation="horizontal">
+    android:background="@drawable/img_card_view_body">
 
     <TextView
-        android:id="@+id/tradeOptionName"
-        android:layout_width="0dp"
+        android:id="@+id/headline"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:padding="@dimen/eight_dips"
+        android:layout_marginLeft="@dimen/sixteen_dips"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/primary_text"
-        android:text="Bitcoin" />
+        tools:text="Bitcoin" />
 
-    <TextView
-        android:id="@+id/tradeOptionValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/eight_dips"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/icons"
-        android:textStyle="bold"
-        android:text="R$55.321,00" />
-
-</LinearLayout>
+</FrameLayout>

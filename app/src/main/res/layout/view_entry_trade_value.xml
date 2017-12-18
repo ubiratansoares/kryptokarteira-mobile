@@ -3,27 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/entry_background"
+    android:background="@drawable/img_card_view_body"
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/tradeOptionName"
+        android:id="@+id/operationName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="@dimen/eight_dips"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginLeft="@dimen/sixteen_dips"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary_text"
-        android:text="Bitcoin" />
+        tools:text="Preço para compra" />
 
     <TextView
-        android:id="@+id/tradeOptionValue"
+        android:id="@+id/operationValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/eight_dips"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/icons"
+        android:layout_marginRight="@dimen/sixteen_dips"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/accent"
         android:textStyle="bold"
-        android:text="R$55.321,00" />
+        tools:text="R$55.321,00" />
 
 </LinearLayout>

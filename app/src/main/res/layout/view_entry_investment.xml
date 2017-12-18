@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/entry_background"
+    android:background="@drawable/img_card_view_body"
     android:orientation="horizontal">
 
     <TextView
@@ -12,18 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:padding="@dimen/eight_dips"
+        android:layout_marginLeft="@dimen/sixteen_dips"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/primary_text"
-        android:text="Reais (BLR)" />
+        tools:text="Em Reais" />
 
     <TextView
         android:id="@+id/investmentValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/eight_dips"
+        android:layout_marginRight="@dimen/sixteen_dips"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/primary_dark"
+        android:textColor="@color/accent"
         android:textStyle="bold"
-        android:text="10.000,00" />
+        tools:text="BLR 10.000,00" />
 
 </LinearLayout>

@@ -16,6 +16,6 @@
     </style>
 
     <style name="FlatButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/primary_dark</item>
+        <item name="colorControlHighlight">@color/gray_background</item>
     </style>
 </resources>

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="minus_four_dips">-4dp</dimen>
+    <dimen name="two_dips">2dp</dimen>
+    <dimen name="four_dips">4dp</dimen>
+    <dimen name="seven_dips">4dp</dimen>
     <dimen name="eight_dips">8dp</dimen>
     <dimen name="sixteen_dips">16dp</dimen>
     <dimen name="twentyfour_dips">24dp</dimen>
     <dimen name="thirtytwo_dips">32dp</dimen>
+    <dimen name="thirtysix_dips">36dp</dimen>
     <dimen name="forty_eight_dips">48dp</dimen>
 
 </resources>

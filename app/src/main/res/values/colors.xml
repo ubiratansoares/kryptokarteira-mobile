@@ -11,5 +11,5 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#212121</color>
-    <color name="entry_background">#F4F4F4</color>
+    <color name="gray_background">#F2F2F2</color>
 </resources>
