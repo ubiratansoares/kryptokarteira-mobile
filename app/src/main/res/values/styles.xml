@@ -17,5 +17,6 @@
 
     <style name="FlatButton" parent="Theme.AppCompat.Light">
         <item name="colorControlHighlight">@color/gray_background</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/secondary_text</item>
     </style>
 </resources>

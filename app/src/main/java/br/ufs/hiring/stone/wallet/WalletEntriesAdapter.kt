@@ -23,8 +23,13 @@ import kotlinx.android.synthetic.main.view_entry_transaction_middle.view.*
 
 typealias Holder = RecyclerView.ViewHolder
 
-class WalletEntriesAdapter(
-        private val models: List<EntryModel>) : RecyclerView.Adapter<Holder>() {
+class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
+
+    private val models: MutableList<EntryModel> = ArrayList()
+
+    fun addModel(toAdd: EntryModel) {
+        models += toAdd
+    }
 
     override fun getItemCount(): Int {
         return models.size

@@ -10,6 +10,7 @@ import br.ufs.hiring.stone.data.webservice.WebServiceFactory
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
 import br.ufs.hiring.stone.features.onboarding.ReclaimGiveaway
+import br.ufs.hiring.stone.features.wallet.WalletScreen
 import com.github.salomonbrys.kodein.*
 import com.github.salomonbrys.kodein.android.androidActivityScope
 import io.reactivex.Scheduler
@@ -49,6 +50,12 @@ class Injection(private val context: Context) {
         bind<OnboardingScreen>() with provider {
             OnboardingScreen(
                     usecase = instance(),
+                    uiScheduler = instance(UITHREAD)
+            )
+        }
+
+        bind<WalletScreen>() with provider {
+            WalletScreen(
                     uiScheduler = instance(UITHREAD)
             )
         }
