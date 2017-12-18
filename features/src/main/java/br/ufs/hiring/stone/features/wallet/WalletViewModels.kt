@@ -9,13 +9,23 @@ package br.ufs.hiring.stone.features.wallet
 sealed class EntryModel
 
 class CallToAction : EntryModel()
-class Investiment(val formattedName: String, val formattedValue: String) : EntryModel()
-class TradeValue(val formattedOperation: String, val formattedValue: String) : EntryModel()
 class CardHeader : EntryModel()
 class CardFooter : EntryModel()
 class IntraCardSpace : EntryModel()
 class BetweenCardsSpace : EntryModel()
 class HorizontalLine : EntryModel()
+
+class Headline(
+        val type : HeadlineType,
+        val headline: String) : EntryModel()
+
+class Investiment(
+        val formattedName: String,
+        val formattedValue: String) : EntryModel()
+
+class TradeValue(
+        val formattedOperation: String,
+        val formattedValue: String) : EntryModel()
 
 class TransactionEntry(
         val type: EntryType,
@@ -30,8 +40,6 @@ sealed class EntryType {
     object Header : EntryType()
     object Standalone : EntryType()
 }
-
-class Headline(val type : HeadlineType, val headline: String) : EntryModel()
 
 sealed class HeadlineType {
     object Block : HeadlineType()

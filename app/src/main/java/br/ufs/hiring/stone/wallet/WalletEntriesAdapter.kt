@@ -37,7 +37,7 @@ class WalletEntriesAdapter(
         return viewHolderForType(root, viewType)
     }
 
-    override fun onBindViewHolder(holder: Holder?, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
 
         val model = models[position]
         when (holder) {
@@ -45,7 +45,7 @@ class WalletEntriesAdapter(
             is InvestimentHolder -> holder.bind(model as Investiment)
             is TradeValueHolder -> holder.bind(model as TradeValue)
             is TransactionHolder -> holder.bind(model as TransactionEntry)
-            is NoData -> { }
+            is NoData -> Unit
             else -> throw IllegalArgumentException("Invalid ViewType for position")
         }
     }
@@ -112,7 +112,7 @@ class WalletEntriesAdapter(
     }
 }
 
-class NoData(val itemView: View) : Holder(itemView)
+class NoData(root: View) : Holder(root)
 
 class HeadlineHolder(private val root: View) : Holder(root) {
     fun bind(model: Headline) {
@@ -122,15 +122,19 @@ class HeadlineHolder(private val root: View) : Holder(root) {
 
 class InvestimentHolder(private val root: View) : Holder(root) {
     fun bind(model: Investiment) {
-        root.investmentName.text = model.formattedName
-        root.investmentValue.text = model.formattedValue
+        with(model) {
+            root.investmentName.text = formattedName
+            root.investmentValue.text = formattedValue
+        }
     }
 }
 
 class TradeValueHolder(private val root: View) : Holder(root) {
     fun bind(model: TradeValue) {
-        root.operationName.text = model.formattedOperation
-        root.operationValue.text = model.formattedValue
+        with(model) {
+            root.operationName.text = formattedOperation
+            root.operationValue.text = formattedValue
+        }
     }
 }
 
