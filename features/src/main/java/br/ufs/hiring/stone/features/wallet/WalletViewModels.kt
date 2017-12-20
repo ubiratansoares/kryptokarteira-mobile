@@ -16,7 +16,7 @@ class BetweenCardsSpace : EntryModel()
 class HorizontalLine : EntryModel()
 
 class Headline(
-        val type : HeadlineType,
+        val type: HeadlineType,
         val headline: String) : EntryModel()
 
 class Investiment(
