@@ -13,8 +13,6 @@ import com.orhanobut.hawk.Hawk
 
 class HawkStorage(context: Context) : WalletStorage {
 
-    private val WALLET = "wallet.owner"
-
     init {
         Hawk.init(context).build()
     }
@@ -33,6 +31,10 @@ class HawkStorage(context: Context) : WalletStorage {
         } catch (error: Throwable) {
             throw InfrastructureError.StorageAccessError
         }
+    }
+
+    private companion object {
+        val WALLET = "wallet.owner"
     }
 
 }

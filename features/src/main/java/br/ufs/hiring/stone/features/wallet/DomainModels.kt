@@ -8,7 +8,6 @@ import java.util.*
  *
  */
 
-
 sealed class Currency(val label: String, val name: String) {
     object Brita : Currency("bta", "Brita")
     object Bitcoin : Currency("btc", "Bitcoin")
@@ -24,7 +23,7 @@ data class BrokingInformation(
 data class Saving(val currency: Currency, val amount: Float)
 
 sealed class TransactionType {
-    object Sell : TransactionType() {}
+    object Sell : TransactionType()
     object Buy : TransactionType()
 }
 
