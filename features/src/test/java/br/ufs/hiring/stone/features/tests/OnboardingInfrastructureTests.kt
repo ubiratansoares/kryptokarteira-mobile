@@ -8,7 +8,7 @@ import br.ufs.hiring.stone.data.FileFromResources
 import br.ufs.hiring.stone.data.storage.WalletStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
-import br.ufs.hiring.stone.data.webservice.models.WalletPayload
+import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
 import br.ufs.hiring.stone.features.onboarding.GiveawayStatus
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import com.nhaarman.mockito_kotlin.doReturn
@@ -88,7 +88,7 @@ class OnboardingInfrastructureTests {
 
     @Test fun `should integrate handling networking issue`() {
 
-        val networkingError = Observable.error<WalletPayload> {
+        val networkingError = Observable.error<NewWalletPayload> {
             IOException("Canceled")
         }
 
