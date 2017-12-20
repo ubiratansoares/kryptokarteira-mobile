@@ -3,7 +3,7 @@ package br.ufs.hiring.stone.features.onboarding
 import br.ufs.architecture.core.infrastructure.errorhandlers.InfraErrorsHandler
 import br.ufs.hiring.stone.data.storage.WalletStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
-import br.ufs.hiring.stone.data.webservice.models.WalletPayload
+import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
 import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Available
 import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
 import io.reactivex.Completable
@@ -36,7 +36,7 @@ class OnboardingInfrastructure(
         return webService.newWallet()
                 .subscribeOn(worker)
                 .compose(InfraErrorsHandler())
-                .map { it as WalletPayload }
+                .map { it as NewWalletPayload }
                 .doOnNext { storage.storeOwner(it.owner) }
                 .ignoreElements()
     }

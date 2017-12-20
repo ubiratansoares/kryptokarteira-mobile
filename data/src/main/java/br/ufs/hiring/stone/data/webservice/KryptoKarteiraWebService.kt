@@ -2,8 +2,8 @@ package br.ufs.hiring.stone.data.webservice
 
 import br.ufs.hiring.stone.data.webservice.models.HomePayload
 import br.ufs.hiring.stone.data.webservice.models.NewTransactionBody
+import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
 import br.ufs.hiring.stone.data.webservice.models.TransactionResultPayload
-import br.ufs.hiring.stone.data.webservice.models.WalletPayload
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -20,11 +20,10 @@ import retrofit2.http.Path
 interface KryptoKarteiraWebService {
 
     @GET("v1/wallet/new")
-    fun newWallet(): Observable<WalletPayload>
+    fun newWallet(): Observable<NewWalletPayload>
 
     @GET("v1/home/{walletId}/info")
-    fun home(
-            @Path("walletId") owner: String): Single<HomePayload>
+    fun home(@Path("walletId") owner: String): Observable<HomePayload>
 
     @POST("v1/home/{walletId}/transaction")
     fun transaction(
