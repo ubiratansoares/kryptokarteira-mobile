@@ -27,9 +27,9 @@ class GsonErrorsHandler : ObservableTransformer<Any, Any> {
 
     private fun isErrorFromGson(throwable: Throwable): Boolean {
         return when (throwable) {
-            is MalformedJsonException -> true
-            is JsonIOException -> true
-            is JsonSyntaxException -> true
+            is MalformedJsonException,
+            is JsonIOException,
+            is JsonSyntaxException,
             is JsonParseException -> true
             else -> false
         }
