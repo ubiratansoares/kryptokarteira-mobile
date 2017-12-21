@@ -35,7 +35,7 @@ ext {
     assertJVersion = '3.8.0'
     mockitoKotlinVersion = '1.5.0'
     dexMakerVersion = '2.2.0'
-    roboletricVersion = '3.5.1'
+    roboletricVersion = '3.6.1'
     espressoCoreVersion = '3.0.1'
     espressoToolsVersion = '1.0.1'
     baristaVersion = '1.7.0'
