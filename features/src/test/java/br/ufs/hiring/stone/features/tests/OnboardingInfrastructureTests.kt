@@ -5,7 +5,7 @@ import br.ufs.architecture.core.errors.InfrastructureError.RemoteSystemDown
 import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
 import br.ufs.architecture.core.errors.NetworkingIssue
 import br.ufs.hiring.stone.data.FileFromResources
-import br.ufs.hiring.stone.data.storage.WalletStorage
+import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
 import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
@@ -32,7 +32,7 @@ import java.util.*
 
 class OnboardingInfrastructureTests {
 
-    lateinit var storage: WalletStorage
+    lateinit var storage: WalletOwnerStorage
     lateinit var infrastructure: OnboardingInfrastructure
     lateinit var server: MockWebServer
 
@@ -138,7 +138,7 @@ class OnboardingInfrastructureTests {
 
     private fun `storage reports wallet not present`() {
         whenever(storage.retrieveOwner())
-                .thenReturn(WalletStorage.NO_WALLET)
+                .thenReturn(WalletOwnerStorage.NO_WALLET)
     }
 
     private fun `server returns a new wallet`() {
