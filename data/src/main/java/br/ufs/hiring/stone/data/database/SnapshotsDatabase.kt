@@ -11,7 +11,8 @@ import android.arch.persistence.room.RoomDatabase
 
 @Database(
         version = 1,
-        entities = [Snapshot::class, Broking::class, Saving::class, Transaction::class]
+        entities = [Snapshot::class, Broking::class, Saving::class, Transaction::class],
+        exportSchema = false
 )
 abstract class SnapshotsDatabase : RoomDatabase() {
 
