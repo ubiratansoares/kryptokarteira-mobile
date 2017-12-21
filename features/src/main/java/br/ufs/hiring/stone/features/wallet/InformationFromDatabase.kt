@@ -1,6 +1,8 @@
 package br.ufs.hiring.stone.features.wallet
 
-import br.ufs.hiring.stone.data.webservice.models.HomePayload
+import br.ufs.hiring.stone.data.database.Broking
+import br.ufs.hiring.stone.data.database.Saving
+import br.ufs.hiring.stone.data.database.Transaction
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -9,29 +11,29 @@ import java.util.*
  * Created by @ubiratanfsoares
  *
  */
+object InformationFromDatabase {
 
-object InformationFromPayload {
+    operator fun invoke(brokingTuples: List<Broking>,
+                        savingTuples: List<Saving>,
+                        transactionTuples: List<Transaction>): HomeInformation {
 
-    operator fun invoke(payload: HomePayload): HomeInformation {
 
-        val currencies = payload.currencies.map { Currency.From(it.label) }
-
-        val brokings = payload.broking.map {
+        val brokings = brokingTuples.map {
             BrokingInformation(
-                    currency = currencies.first { currency -> currency.label == it.label },
+                    currency = Currency.From(it.label),
                     sellPrice = it.sellPrice,
                     buyPrice = it.buyPrice
             )
         }
 
-        val savings = payload.wallet.savings.map {
+        val savings = savingTuples.map {
             Saving(
-                    currency = currencies.first { currency -> currency.label == it.label },
+                    currency = Currency.From(it.label),
                     amount = it.amount
             )
         }
 
-        val transactions = payload.wallet.transactions.map {
+        val transactions = transactionTuples.map {
             Transaction(
                     currency = Currency.From(it.currency),
                     amount = it.amount,
@@ -47,7 +49,6 @@ object InformationFromPayload {
         val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
         return formatter.parse(timestamp)
     }
-
 
 
 }

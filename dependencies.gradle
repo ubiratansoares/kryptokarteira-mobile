@@ -25,6 +25,7 @@ ext {
     supportLibraryVersion = '27.0.1'
     archComponentsVersion = '1.0.3'
     archExtensionsVersion = '1.0.0'
+    roomVersion = '1.0.0'
     materialDialogsVersion = '0.9.6.0'
     hawkVersion = '2.0.1'
     kodeinVersion = '4.1.0'
@@ -43,6 +44,9 @@ ext {
     rxJava = "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
     rxAndroid = "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
     hawk = "com.orhanobut:hawk:${hawkVersion}"
+    room = "android.arch.persistence.room:runtime:${roomVersion}"
+    roomRxJava2 = "android.arch.persistence.room:rxjava2:${roomVersion}"
+    roomCompiler = "android.arch.persistence.room:compiler:${roomVersion}"
 
     kotlin = [
             kotlin       : "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
@@ -69,7 +73,7 @@ ext {
 
     archComponents = [
             archRuntime   : "android.arch.lifecycle:runtime:${archComponentsVersion}",
-            archExtensions: "android.arch.lifecycle:extensions:${archExtensionsVersion}"
+            archExtensions: "android.arch.lifecycle:extensions:${archExtensionsVersion}",
     ]
 
     archComponentsRelated = archComponents.values()

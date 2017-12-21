@@ -11,4 +11,5 @@ sealed class InfrastructureError : Throwable() {
     object RemoteSystemDown : InfrastructureError()
     object UndesiredResponse : InfrastructureError()
     object StorageAccessError : InfrastructureError()
+    object LocalDatabaseAccessError : InfrastructureError()
 }

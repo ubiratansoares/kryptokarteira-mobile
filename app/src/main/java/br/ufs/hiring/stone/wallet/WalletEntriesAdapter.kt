@@ -29,8 +29,13 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
 
     fun addModel(toAdd: EntryModel) {
         models += toAdd
+        notifyDataSetChanged()
     }
 
+    fun addModels(entries: List<EntryModel>){
+        models.addAll(entries)
+        notifyDataSetChanged()
+    }
     override fun getItemCount(): Int {
         return models.size
     }
@@ -117,7 +122,8 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
     }
 
     fun clear() = models.clear()
-    
+
+
 }
 
 class NoData(root: View) : Holder(root)

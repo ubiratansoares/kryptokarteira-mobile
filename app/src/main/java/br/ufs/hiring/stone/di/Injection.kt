@@ -1,8 +1,10 @@
 package br.ufs.hiring.stone.di
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
 import br.ufs.hiring.stone.BuildConfig
+import br.ufs.hiring.stone.data.database.SnapshotsDatabase
 import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
@@ -27,7 +29,6 @@ import io.reactivex.schedulers.Schedulers
 
 class Injection(private val context: Context) {
 
-
     val graph = Kodein.lazy {
 
         bind<Scheduler>(WORKER) with singleton { Schedulers.io() }
@@ -35,6 +36,15 @@ class Injection(private val context: Context) {
 
         bind<KryptoKarteiraWebService>() with singleton {
             WebServiceFactory.create(debuggable = BuildConfig.DEBUG)
+        }
+
+        bind<SnapshotsDatabase>() with singleton {
+            Room.databaseBuilder(
+                    context.applicationContext,
+                    SnapshotsDatabase::class.java,
+                    "snapshots-db")
+                    .fallbackToDestructiveMigration()
+                    .build()
         }
 
         bind<WalletOwnerStorage>() with singleton {
@@ -51,6 +61,7 @@ class Injection(private val context: Context) {
 
         bind<RetrieveWallet>() with provider {
             WalletInfrastructure(
+                    database = instance(),
                     storage = instance(),
                     webService = instance(),
                     worker = instance(WORKER)

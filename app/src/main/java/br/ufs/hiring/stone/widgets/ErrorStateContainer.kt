@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import br.ufs.architecture.core.errors.InfrastructureError
+import br.ufs.architecture.core.errors.InfrastructureError.LocalDatabaseAccessError
+import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
 import br.ufs.architecture.core.errors.NetworkingIssue
 import br.ufs.hiring.stone.R
 import kotlinx.android.synthetic.main.view_error_feedback.view.*
@@ -25,7 +27,7 @@ class ErrorStateContainer @JvmOverloads constructor(
 
         when (error) {
 
-            is InfrastructureError.UndesiredResponse -> {
+            is UndesiredResponse, LocalDatabaseAccessError -> {
                 feedback = Feedback(
                         R.drawable.img_bug,
                         R.string.error_undesired_response

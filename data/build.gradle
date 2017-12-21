@@ -1,4 +1,5 @@
 apply from: "../android-module.gradle"
+apply plugin: 'kotlin-kapt'
 
 dependencies {
 
@@ -7,6 +8,9 @@ dependencies {
     implementation project(':core-architecture')
     implementation libs.hawk
     implementation libs.rxJava
+    implementation libs.room
+    implementation libs.roomRxJava2
+    kapt libs.roomCompiler
 
     libs.kotlinRelated.each { implementation it }
     libs.retrofitRelated.each { implementation it }

@@ -16,7 +16,7 @@ class WalletScreen(
 
     fun updatedInformation() = usecase
             .execute()
-            .flatMapIterable { EntriesFromWalletInformation(it) }
-            .observeOn(uiScheduler)
+            .map { EntriesFromWalletInformation(it) }
+            .observeOn(uiScheduler, true)
 
 }

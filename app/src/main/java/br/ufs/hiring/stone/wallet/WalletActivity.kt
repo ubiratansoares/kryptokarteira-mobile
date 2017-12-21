@@ -27,6 +27,7 @@ import io.reactivex.functions.Action
 import kotlinx.android.synthetic.main.activity_wallet.*
 import kotlinx.android.synthetic.main.view_error_feedback.*
 
+@Suppress("UNCHECKED_CAST")
 /**
  *
  * Created by @ubiratanfsoares
@@ -41,6 +42,7 @@ class WalletActivity : AppCompatActivity(),
     private val screen by screenProvider { kodein.value.instance<WalletScreen>() }
 
     private val executions by lazy { CompositeDisposable() }
+    val entriesAdapter = WalletEntriesAdapter()
 
     override fun showLoading() = Action {
         pullToRefresh.apply {
@@ -91,25 +93,31 @@ class WalletActivity : AppCompatActivity(),
     }
 
     private fun setupViews() {
-        walletViews.layoutManager = LinearLayoutManager(this)
+
+        walletViews.apply {
+            layoutManager = LinearLayoutManager(baseContext)
+            adapter = entriesAdapter
+        }
+
         pullToRefresh.apply {
             setColorSchemeResources(R.color.colorAccent)
-            setOnRefreshListener {
-                updateInformation()
-            }
+            setOnRefreshListener { updateInformation() }
         }
     }
 
     private fun updateInformation() {
         clearErrorFeedback()
-        val entriesAdapter = WalletEntriesAdapter()
         val execution = screen
                 .updatedInformation()
                 .compose(presentation)
                 .subscribe(
-                        { entriesAdapter.addModel(it as EntryModel) },
-                        { Log.e(WalletActivity.TAG, "Failed -> $it") },
-                        { walletViews.adapter = entriesAdapter }
+                        {
+                            entriesAdapter.clear()
+                            entriesAdapter.addModels(it as List<EntryModel>)
+                        },
+                        {
+                            Log.e(WalletActivity.TAG, "Failed -> $it")
+                        }
                 )
 
         executions.add(execution)
@@ -120,7 +128,7 @@ class WalletActivity : AppCompatActivity(),
             retryAction: (Any) -> Unit,
             retryText: Int = R.string.snackaction_retry) {
 
-        Snackbar.make(walletRoot, callToActionText, Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(walletRoot, callToActionText, Snackbar.LENGTH_LONG)
                 .action(retryText, retryAction)
                 .colorForActionText(R.color.primary)
                 .show()

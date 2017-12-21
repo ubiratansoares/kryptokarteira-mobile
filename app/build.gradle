@@ -82,6 +82,10 @@ dependencies {
     implementation libs.gson
     implementation libs.hawk
 
+    implementation libs.room
+    implementation libs.roomRxJava2
+    kapt libs.roomCompiler
+
     libs.kotlinRelated.each { implementation it }
     libs.kodeinRelated.each { implementation it }
     libs.retrofitRelated.each { implementation it }

@@ -1,7 +1,7 @@
 package br.ufs.hiring.stone.features.onboarding
 
 import br.ufs.architecture.core.infrastructure.errorhandlers.InfraErrorsHandler
-import br.ufs.hiring.stone.data.storage.WalletStorage
+import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
 import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Available
@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
  */
 
 class OnboardingInfrastructure(
-        private val storage: WalletStorage,
+        private val storage: WalletOwnerStorage,
         private val webService: KryptoKarteiraWebService,
         private val worker: Scheduler = Schedulers.trampoline()) : ReclaimGiveaway {
 
@@ -26,7 +26,7 @@ class OnboardingInfrastructure(
         return Observable.just(storage.retrieveOwner())
                 .map {
                     when (it) {
-                        WalletStorage.NO_WALLET -> Available
+                        WalletOwnerStorage.NO_WALLET -> Available
                         else -> Received
                     }
                 }

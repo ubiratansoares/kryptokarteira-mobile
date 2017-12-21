@@ -9,6 +9,7 @@ dependencies {
 
     implementation libs.rxJava
     implementation libs.gson
+    implementation libs.room
 
     libs.kotlinRelated.each { implementation it }
     libs.archComponentsRelated.each { implementation it }

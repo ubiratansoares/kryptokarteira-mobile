@@ -26,6 +26,7 @@ class BrokingPayload(
 )
 
 class WalletPayload(
+        @SerializedName("owner") val ownerId: String,
         val savings: List<SavingPayload>,
         val transactions: List<TransactionPayload>
 )
