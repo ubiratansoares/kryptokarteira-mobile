@@ -4,8 +4,9 @@ dependencies {
 
     def libs = rootProject.ext
 
-    implementation project(':data')
+    implementation project(':domain')
     implementation project(':core-architecture')
+    implementation project(':data')
 
     implementation libs.rxJava
     implementation libs.gson

@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.features.wallet
+package br.ufs.hiring.stone.domain
 
 import io.reactivex.Observable
 

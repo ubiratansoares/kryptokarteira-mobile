@@ -1,6 +1,7 @@
 package br.ufs.hiring.stone.features.wallet
 
 import br.ufs.architecture.core.presentation.util.Screen
+import br.ufs.hiring.stone.domain.RetrieveWallet
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 

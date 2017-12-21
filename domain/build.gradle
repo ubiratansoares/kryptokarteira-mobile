@@ -1,0 +1,9 @@
+apply from: "../android-module.gradle"
+
+dependencies {
+
+    def libs = rootProject.ext
+
+    implementation libs.rxJava
+
+}

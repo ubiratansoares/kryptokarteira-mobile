@@ -4,11 +4,11 @@ import android.util.Log
 import br.ufs.architecture.core.errors.InfrastructureError
 import br.ufs.architecture.core.infrastructure.errorhandlers.InfraErrorsHandler
 import br.ufs.hiring.stone.data.database.*
-import br.ufs.hiring.stone.data.database.Saving
-import br.ufs.hiring.stone.data.database.Transaction
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.models.HomePayload
+import br.ufs.hiring.stone.domain.HomeInformation
+import br.ufs.hiring.stone.domain.RetrieveWallet
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers

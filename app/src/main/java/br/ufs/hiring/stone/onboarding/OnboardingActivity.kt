@@ -14,7 +14,7 @@ import br.ufs.architecture.core.presentation.loading.LoadingView
 import br.ufs.architecture.core.presentation.networking.NetworkingErrorView
 import br.ufs.architecture.core.presentation.util.screenProvider
 import br.ufs.hiring.stone.R
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
+import br.ufs.hiring.stone.domain.GiveawayStatus.Received
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
 import br.ufs.hiring.stone.wallet.WalletActivity
 import br.ufs.hiring.stone.widgets.action

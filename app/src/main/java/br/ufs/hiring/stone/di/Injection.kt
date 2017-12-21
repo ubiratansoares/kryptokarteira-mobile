@@ -11,8 +11,8 @@ import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
-import br.ufs.hiring.stone.features.onboarding.ReclaimGiveaway
-import br.ufs.hiring.stone.features.wallet.RetrieveWallet
+import br.ufs.hiring.stone.domain.ReclaimGiveaway
+import br.ufs.hiring.stone.domain.RetrieveWallet
 import br.ufs.hiring.stone.features.wallet.WalletInfrastructure
 import br.ufs.hiring.stone.features.wallet.WalletScreen
 import com.github.salomonbrys.kodein.*

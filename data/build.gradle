@@ -6,6 +6,7 @@ dependencies {
     def libs = rootProject.ext
 
     implementation project(':core-architecture')
+    implementation project(':domain')
     implementation libs.hawk
     implementation libs.rxJava
     implementation libs.room

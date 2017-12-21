@@ -1,6 +1,8 @@
 package br.ufs.hiring.stone.features.wallet
 
 import br.ufs.hiring.stone.data.webservice.models.HomePayload
+import br.ufs.hiring.stone.domain.*
+import br.ufs.hiring.stone.domain.Currency
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,9 +35,9 @@ object InformationFromPayload {
 
         val transactions = payload.wallet.transactions.map {
             Transaction(
-                    currency = Currency.From(it.currency),
+                    currency = Currency(it.currency),
                     amount = it.amount,
-                    type = TransactionType.From(it.type),
+                    type = TransactionType(it.type),
                     timestamp = convertToDateTime(it.timestamp)
             )
         }

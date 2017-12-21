@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.features.onboarding
+package br.ufs.hiring.stone.domain
 
 /**
  *

@@ -3,6 +3,8 @@ package br.ufs.hiring.stone.features.onboarding
 import br.ufs.architecture.core.presentation.util.Replayer
 import br.ufs.architecture.core.presentation.util.Replayer.Companion.COMPLETABLE_NEVER
 import br.ufs.architecture.core.presentation.util.Screen
+import br.ufs.hiring.stone.domain.GiveawayStatus
+import br.ufs.hiring.stone.domain.ReclaimGiveaway
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Scheduler

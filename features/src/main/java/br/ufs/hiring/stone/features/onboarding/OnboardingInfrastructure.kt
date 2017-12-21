@@ -4,8 +4,10 @@ import br.ufs.architecture.core.infrastructure.errorhandlers.InfraErrorsHandler
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Available
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
+import br.ufs.hiring.stone.domain.GiveawayStatus
+import br.ufs.hiring.stone.domain.GiveawayStatus.Available
+import br.ufs.hiring.stone.domain.GiveawayStatus.Received
+import br.ufs.hiring.stone.domain.ReclaimGiveaway
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Scheduler

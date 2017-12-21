@@ -1,10 +1,10 @@
 package br.ufs.hiring.stone.features.tests
 
 
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus.Received
+import br.ufs.hiring.stone.domain.GiveawayStatus
+import br.ufs.hiring.stone.domain.GiveawayStatus.Received
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
-import br.ufs.hiring.stone.features.onboarding.ReclaimGiveaway
+import br.ufs.hiring.stone.domain.ReclaimGiveaway
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Completable
 import io.reactivex.Observable

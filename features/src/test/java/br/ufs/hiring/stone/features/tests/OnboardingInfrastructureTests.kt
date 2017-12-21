@@ -9,7 +9,7 @@ import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
 import br.ufs.hiring.stone.data.webservice.models.NewWalletPayload
-import br.ufs.hiring.stone.features.onboarding.GiveawayStatus
+import br.ufs.hiring.stone.domain.GiveawayStatus
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock

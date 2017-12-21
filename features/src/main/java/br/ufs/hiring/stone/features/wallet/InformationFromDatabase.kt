@@ -3,6 +3,10 @@ package br.ufs.hiring.stone.features.wallet
 import br.ufs.hiring.stone.data.database.Broking
 import br.ufs.hiring.stone.data.database.Saving
 import br.ufs.hiring.stone.data.database.Transaction
+import br.ufs.hiring.stone.domain.BrokingInformation
+import br.ufs.hiring.stone.domain.Currency
+import br.ufs.hiring.stone.domain.HomeInformation
+import br.ufs.hiring.stone.domain.TransactionType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,24 +24,24 @@ object InformationFromDatabase {
 
         val brokings = brokingTuples.map {
             BrokingInformation(
-                    currency = Currency.From(it.label),
+                    currency = Currency(it.label),
                     sellPrice = it.sellPrice,
                     buyPrice = it.buyPrice
             )
         }
 
         val savings = savingTuples.map {
-            Saving(
-                    currency = Currency.From(it.label),
+            br.ufs.hiring.stone.domain.Saving(
+                    currency = Currency(it.label),
                     amount = it.amount
             )
         }
 
         val transactions = transactionTuples.map {
-            Transaction(
-                    currency = Currency.From(it.currency),
+            br.ufs.hiring.stone.domain.Transaction(
+                    currency = Currency(it.currency),
                     amount = it.amount,
-                    type = TransactionType.From(it.type),
+                    type = TransactionType(it.type),
                     timestamp = convertToDateTime(it.timestamp)
             )
         }

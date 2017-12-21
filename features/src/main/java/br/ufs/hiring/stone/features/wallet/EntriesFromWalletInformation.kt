@@ -1,5 +1,6 @@
 package br.ufs.hiring.stone.features.wallet
 
+import br.ufs.hiring.stone.domain.*
 import br.ufs.hiring.stone.features.wallet.EntryType.*
 import java.text.NumberFormat
 import java.util.*
