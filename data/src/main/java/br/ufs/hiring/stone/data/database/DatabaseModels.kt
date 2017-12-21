@@ -19,7 +19,7 @@ import android.arch.persistence.room.PrimaryKey
 class Snapshot(val ownerId: String)
 
 @Entity(tableName = "brokings")
-class Broking(
+class BrokingRow(
         val updatedAt: Long,
         @PrimaryKey val label: String,
         val buyPrice: Float,
@@ -37,7 +37,7 @@ class Broking(
                 ))
         ]
 )
-class Saving(
+class SavingRow(
         val ownerId: String,
         val label: String,
         val amount: Float
@@ -54,7 +54,7 @@ class Saving(
                 ))
         ]
 )
-class Transaction(
+class TransactionRow(
         val ownerId: String,
         val currency: String,
         val type: String,

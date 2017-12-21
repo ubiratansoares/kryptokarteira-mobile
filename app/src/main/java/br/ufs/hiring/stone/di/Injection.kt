@@ -4,15 +4,18 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
 import br.ufs.hiring.stone.BuildConfig
+import br.ufs.hiring.stone.data.database.RoomPersistance
 import br.ufs.hiring.stone.data.database.SnapshotsDatabase
 import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
+import br.ufs.hiring.stone.domain.HomeInformationCoordinator
+import br.ufs.hiring.stone.domain.OfflineHomeSupport
+import br.ufs.hiring.stone.domain.ReclaimGiveaway
+import br.ufs.hiring.stone.domain.RetrieveHomeInformation
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
-import br.ufs.hiring.stone.domain.ReclaimGiveaway
-import br.ufs.hiring.stone.domain.RetrieveWallet
 import br.ufs.hiring.stone.features.wallet.WalletInfrastructure
 import br.ufs.hiring.stone.features.wallet.WalletScreen
 import com.github.salomonbrys.kodein.*
@@ -39,10 +42,7 @@ class Injection(private val context: Context) {
         }
 
         bind<SnapshotsDatabase>() with singleton {
-            Room.databaseBuilder(
-                    context.applicationContext,
-                    SnapshotsDatabase::class.java,
-                    "snapshots-db")
+            Room.databaseBuilder(context, SnapshotsDatabase::class.java, "snapshots-db")
                     .fallbackToDestructiveMigration()
                     .build()
         }
@@ -59,12 +59,26 @@ class Injection(private val context: Context) {
             )
         }
 
-        bind<RetrieveWallet>() with provider {
+        bind<RetrieveHomeInformation>() with provider {
             WalletInfrastructure(
-                    database = instance(),
                     storage = instance(),
                     webService = instance(),
                     worker = instance(WORKER)
+            )
+        }
+
+        bind<OfflineHomeSupport>() with provider {
+            RoomPersistance(
+                    storage = instance(),
+                    database = instance(),
+                    worker = instance(WORKER)
+            )
+        }
+
+        bind<HomeInformationCoordinator>() with provider {
+            HomeInformationCoordinator(
+                    persister = instance(),
+                    updater = instance()
             )
         }
 

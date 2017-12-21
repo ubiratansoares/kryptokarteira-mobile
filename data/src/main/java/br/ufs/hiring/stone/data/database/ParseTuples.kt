@@ -1,12 +1,7 @@
-package br.ufs.hiring.stone.features.wallet
+package br.ufs.hiring.stone.data.database
 
-import br.ufs.hiring.stone.data.database.Broking
-import br.ufs.hiring.stone.data.database.Saving
-import br.ufs.hiring.stone.data.database.Transaction
-import br.ufs.hiring.stone.domain.BrokingInformation
+import br.ufs.hiring.stone.domain.*
 import br.ufs.hiring.stone.domain.Currency
-import br.ufs.hiring.stone.domain.HomeInformation
-import br.ufs.hiring.stone.domain.TransactionType
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -15,14 +10,14 @@ import java.util.*
  * Created by @ubiratanfsoares
  *
  */
-object InformationFromDatabase {
+object ParseTuples {
 
-    operator fun invoke(brokingTuples: List<Broking>,
-                        savingTuples: List<Saving>,
-                        transactionTuples: List<Transaction>): HomeInformation {
+    operator fun invoke(brokingRows: List<BrokingRow>,
+                        savingRows: List<SavingRow>,
+                        transactionRows: List<TransactionRow>): HomeInformation {
 
 
-        val brokings = brokingTuples.map {
+        val brokings = brokingRows.map {
             BrokingInformation(
                     currency = Currency(it.label),
                     sellPrice = it.sellPrice,
@@ -30,15 +25,15 @@ object InformationFromDatabase {
             )
         }
 
-        val savings = savingTuples.map {
-            br.ufs.hiring.stone.domain.Saving(
+        val savings = savingRows.map {
+            Saving(
                     currency = Currency(it.label),
                     amount = it.amount
             )
         }
 
-        val transactions = transactionTuples.map {
-            br.ufs.hiring.stone.domain.Transaction(
+        val transactions = transactionRows.map {
+            Transaction(
                     currency = Currency(it.currency),
                     amount = it.amount,
                     type = TransactionType(it.type),

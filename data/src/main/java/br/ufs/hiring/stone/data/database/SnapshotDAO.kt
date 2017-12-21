@@ -14,19 +14,19 @@ interface SnapshotDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE) fun register(
             snapshot: Snapshot,
-            brokings: List<Broking>,
-            savings: List<Saving>,
-            transactions: List<Transaction>)
+            brokingRows: List<BrokingRow>,
+            savingRows: List<SavingRow>,
+            transactionRows: List<TransactionRow>)
 
     @Update fun update(
-            brokings: List<Broking>,
-            savings: List<Saving>,
-            transactions: List<Transaction>)
+            brokingRows: List<BrokingRow>,
+            savingRows: List<SavingRow>,
+            transactionRows: List<TransactionRow>)
 
     @Query(value = LATEST_SNAPSHOT) fun lastestSnapshot(): Maybe<Snapshot>
-    @Query(value = LATEST_BROKINGS) fun brokings(): List<Broking>
-    @Query(value = SAVINGS_BY_ID) fun savings(id: String): List<Saving>
-    @Query(value = TRANSACTIONS_BY_ID) fun transactions(id: String): List<Transaction>
+    @Query(value = LATEST_BROKINGS) fun brokings(): List<BrokingRow>
+    @Query(value = SAVINGS_BY_ID) fun savings(id: String): List<SavingRow>
+    @Query(value = TRANSACTIONS_BY_ID) fun transactions(id: String): List<TransactionRow>
 
     private companion object {
         const val LATEST_SNAPSHOT = "SELECT * FROM snapshots LIMIT 1"

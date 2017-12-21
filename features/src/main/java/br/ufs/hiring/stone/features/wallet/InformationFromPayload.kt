@@ -50,6 +50,4 @@ object InformationFromPayload {
         return formatter.parse(timestamp)
     }
 
-
-
 }

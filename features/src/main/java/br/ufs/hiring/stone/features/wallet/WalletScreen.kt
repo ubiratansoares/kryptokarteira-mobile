@@ -1,7 +1,7 @@
 package br.ufs.hiring.stone.features.wallet
 
 import br.ufs.architecture.core.presentation.util.Screen
-import br.ufs.hiring.stone.domain.RetrieveWallet
+import br.ufs.hiring.stone.domain.HomeInformationCoordinator
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
@@ -12,11 +12,11 @@ import io.reactivex.schedulers.Schedulers
  */
 
 class WalletScreen(
-        private val usecase: RetrieveWallet,
+        private val usecase: HomeInformationCoordinator,
         private val uiScheduler: Scheduler = Schedulers.trampoline()) : Screen() {
 
     fun updatedInformation() = usecase
-            .execute()
+            .lastInformationAvailable()
             .map { EntriesFromWalletInformation(it) }
             .observeOn(uiScheduler, true)
 

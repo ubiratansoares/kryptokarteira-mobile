@@ -8,7 +8,7 @@ import io.reactivex.Observable
  *
  */
 
-interface RetrieveWallet {
+interface RetrieveHomeInformation {
 
     fun execute(): Observable<HomeInformation>
 
