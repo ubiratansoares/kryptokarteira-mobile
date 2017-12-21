@@ -2,7 +2,7 @@ package br.ufs.hiring.stone.data.storage
 
 import android.content.Context
 import br.ufs.architecture.core.errors.InfrastructureError
-import br.ufs.hiring.stone.data.storage.WalletStorage.Companion.NO_WALLET
+import br.ufs.hiring.stone.data.storage.WalletOwnerStorage.Companion.NO_WALLET
 import com.orhanobut.hawk.Hawk
 
 /**
@@ -11,7 +11,7 @@ import com.orhanobut.hawk.Hawk
  *
  */
 
-class HawkStorage(context: Context) : WalletStorage {
+class HawkOwnerStorage(context: Context) : WalletOwnerStorage {
 
     init {
         Hawk.init(context).build()

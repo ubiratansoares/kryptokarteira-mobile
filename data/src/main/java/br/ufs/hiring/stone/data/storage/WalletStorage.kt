@@ -8,7 +8,7 @@ package br.ufs.hiring.stone.data.storage
 
 typealias WalletOwner = String
 
-interface WalletStorage {
+interface WalletOwnerStorage {
 
     fun storeOwner(owner: WalletOwner)
 

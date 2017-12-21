@@ -115,6 +115,9 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
             else -> throw IllegalArgumentException("Invalid ViewType ")
         }
     }
+
+    fun clear() = models.clear()
+    
 }
 
 class NoData(root: View) : Holder(root)
