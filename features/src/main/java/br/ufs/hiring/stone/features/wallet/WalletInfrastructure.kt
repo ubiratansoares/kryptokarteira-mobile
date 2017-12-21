@@ -1,7 +1,7 @@
 package br.ufs.hiring.stone.features.wallet
 
 import br.ufs.architecture.core.infrastructure.errorhandlers.InfraErrorsHandler
-import br.ufs.hiring.stone.data.storage.WalletStorage
+import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.models.HomePayload
 import io.reactivex.Observable
@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
  */
 
 class WalletInfrastructure(
-        private val storage: WalletStorage,
+        private val storage: WalletOwnerStorage,
         private val webService: KryptoKarteiraWebService,
         private val worker: Scheduler = Schedulers.trampoline()) : RetrieveWallet {
 

@@ -3,8 +3,8 @@ package br.ufs.hiring.stone.di
 import android.content.Context
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
 import br.ufs.hiring.stone.BuildConfig
-import br.ufs.hiring.stone.data.storage.HawkStorage
-import br.ufs.hiring.stone.data.storage.WalletStorage
+import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
+import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
@@ -37,8 +37,8 @@ class Injection(private val context: Context) {
             WebServiceFactory.create(debuggable = BuildConfig.DEBUG)
         }
 
-        bind<WalletStorage>() with singleton {
-            HawkStorage(context.applicationContext)
+        bind<WalletOwnerStorage>() with singleton {
+            HawkOwnerStorage(context.applicationContext)
         }
 
         bind<ReclaimGiveaway>() with provider {
