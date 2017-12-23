@@ -3,6 +3,7 @@ package br.ufs.hiring.stone.features.wallet
 import br.ufs.hiring.stone.domain.*
 import br.ufs.hiring.stone.features.wallet.EntryType.*
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -25,6 +26,7 @@ object EntriesFromWalletInformation {
         val entries = mutableListOf<EntryModel>()
 
         entries.addAll(entriesForSavings(info.savings))
+        entries += BetweenCardsSpace()
         entries.addAll(entriesForBrokings(info.brokings))
         entries.addAll(entriesForTransactions(info.transactions))
 
@@ -124,10 +126,15 @@ object EntriesFromWalletInformation {
                     type = target,
                     currency = currency.name,
                     transcationType = formattedOperation(type),
-                    formattedDate = "em 26/02/2017",
+                    formattedDate = "em ${formattedDate(transaction.timestamp)}",
                     formattedTotal = "$amount ${currency.label.toUpperCase()}"
             )
         }
+    }
+
+    private fun formattedDate(timestamp: Date): String {
+        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        return formatter.format(timestamp)
     }
 
     private fun formattedOperation(type: TransactionType): String {
