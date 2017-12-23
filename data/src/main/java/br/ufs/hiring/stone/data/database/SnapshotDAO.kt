@@ -32,6 +32,7 @@ interface SnapshotDAO {
         const val LATEST_SNAPSHOT = "SELECT * FROM snapshots LIMIT 1"
         const val LATEST_BROKINGS = "SELECT * FROM brokings"
         const val SAVINGS_BY_ID = "SELECT * FROM savings WHERE savings.ownerId = :id"
-        const val TRANSACTIONS_BY_ID = "SELECT * FROM transactions WHERE transactions.ownerId = :id"
+        const val TRANSACTIONS_BY_ID = "SELECT * FROM transactions " +
+                "WHERE transactions.ownerId = :id ORDER BY transactions.timestamp DESC"
     }
 }
