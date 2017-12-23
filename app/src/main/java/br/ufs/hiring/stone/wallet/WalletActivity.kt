@@ -94,8 +94,13 @@ class WalletActivity : AppCompatActivity(),
 
     private fun setupViews() {
 
+        val manager = LinearLayoutManager(this).apply {
+            initialPrefetchItemCount = 4
+            isAutoMeasureEnabled = true
+        }
+
         walletViews.apply {
-            layoutManager = LinearLayoutManager(baseContext)
+            layoutManager = manager
             adapter = entriesAdapter
             isNestedScrollingEnabled = false
         }
