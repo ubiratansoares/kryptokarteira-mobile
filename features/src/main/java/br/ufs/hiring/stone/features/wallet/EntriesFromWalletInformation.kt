@@ -104,7 +104,7 @@ object EntriesFromWalletInformation {
                 entries += transacationEntry(transactions.first(), Header)
 
                 transactions.forEach { transaction ->
-                    if (transaction != header || transaction != footer) {
+                    if (transaction != header && transaction != footer) {
                         entries += transacationEntry(transaction, Middle)
                     }
                 }
