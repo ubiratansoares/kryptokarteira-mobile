@@ -126,7 +126,7 @@ object EntriesFromWalletInformation {
                     type = target,
                     currency = currency.name,
                     transcationType = formattedOperation(type),
-                    formattedDate = "em ${formattedDate(transaction.timestamp)}",
+                    formattedDate = formattedDate(transaction.timestamp),
                     formattedTotal = "$amount ${currency.label.toUpperCase()}"
             )
         }
