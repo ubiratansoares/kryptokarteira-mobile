@@ -97,6 +97,7 @@ class WalletActivity : AppCompatActivity(),
         walletViews.apply {
             layoutManager = LinearLayoutManager(baseContext)
             adapter = entriesAdapter
+            isNestedScrollingEnabled = false
         }
 
         pullToRefresh.apply {
