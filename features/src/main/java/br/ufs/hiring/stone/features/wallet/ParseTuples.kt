@@ -1,5 +1,8 @@
-package br.ufs.hiring.stone.data.database
+package br.ufs.hiring.stone.features.wallet
 
+import br.ufs.hiring.stone.data.database.BrokingRow
+import br.ufs.hiring.stone.data.database.SavingRow
+import br.ufs.hiring.stone.data.database.TransactionRow
 import br.ufs.hiring.stone.domain.*
 import br.ufs.hiring.stone.domain.Currency
 import java.text.SimpleDateFormat

@@ -1,7 +1,8 @@
-package br.ufs.hiring.stone.data.database
+package br.ufs.hiring.stone.features.wallet
 
 import android.util.Log
 import br.ufs.architecture.core.errors.InfrastructureError
+import br.ufs.hiring.stone.data.database.*
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.domain.HomeInformation
 import br.ufs.hiring.stone.domain.OfflineHomeSupport

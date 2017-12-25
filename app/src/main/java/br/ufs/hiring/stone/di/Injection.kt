@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
 import br.ufs.hiring.stone.BuildConfig
-import br.ufs.hiring.stone.data.database.RoomPersistance
+import br.ufs.hiring.stone.features.wallet.RoomPersistance
 import br.ufs.hiring.stone.data.database.SnapshotsDatabase
 import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
