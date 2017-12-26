@@ -14,11 +14,15 @@ class HomeInformationCoordinator(
 
     fun lastInformationAvailable(): Observable<HomeInformation> {
 
-        val cached = persister.previousInformation()
-        val refreshed = updater.execute()
+        val cached = persister
+                .previousInformation()
+                .onErrorResumeNext(Observable.empty())
 
-        return cached
-                .concatWith(refreshed)
+        val refreshed = updater
+                .execute()
                 .doOnNext { persister.save(it) }
+
+        return cached.concatWith(refreshed)
+
     }
 }
