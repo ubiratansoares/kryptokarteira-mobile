@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.features.tests
+package br.ufs.hiring.stone.features.tests.onboarding
 
 
 import br.ufs.hiring.stone.domain.GiveawayStatus
