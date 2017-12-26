@@ -6,11 +6,10 @@ import br.ufs.hiring.stone.data.database.*
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.domain.HomeInformation
 import br.ufs.hiring.stone.domain.OfflineHomeSupport
+import br.ufs.hiring.stone.features.util.ISO8601
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  *
@@ -38,13 +37,13 @@ class RoomPersistance(
     }
 
     override fun save(info: HomeInformation) {
-        val timestamp = System.currentTimeMillis()
+        val now = System.currentTimeMillis()
         val owner = storage.retrieveOwner()
 
         val snapshot = Snapshot(owner)
 
         val brokings = info.brokings.map {
-            BrokingRow(timestamp, it.currency.label, it.buyPrice, it.sellPrice)
+            BrokingRow(now, it.currency.label, it.buyPrice, it.sellPrice)
         }
 
         val savings = info.savings.map {
@@ -57,7 +56,8 @@ class RoomPersistance(
                     currency = it.currency.label,
                     type = it.type.toString(),
                     amount = it.amount,
-                    timestamp = toISO8601(it.timestamp))
+                    timestamp = ISO8601.unzonedStringFromDate(it.timestamp)
+            )
         }
 
         try {
@@ -74,10 +74,6 @@ class RoomPersistance(
         }
     }
 
-    private fun toISO8601(date: Date): String {
-        val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault())
-        return formatter.format(date)
-    }
 
     private companion object {
         val TAG = "RoomPersistance"
