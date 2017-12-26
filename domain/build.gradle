@@ -4,7 +4,9 @@ dependencies {
 
     def libs = rootProject.ext
 
+    implementation project(':core-architecture')
     implementation libs.rxJava
     libs.kotlinRelated.each { implementation it }
+    libs.unitTestingAndroidRelated.each { testImplementation it }
 
 }
