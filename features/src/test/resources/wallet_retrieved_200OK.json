@@ -1,0 +1,53 @@
+{
+  "currencies": [
+    {
+      "label": "btc",
+      "name": "Bitcoin"
+    },
+    {
+      "label": "bta",
+      "name": "Brita"
+    },
+    {
+      "label": "blr",
+      "name": "Real"
+    }
+  ],
+  "broking": [
+    {
+      "label": "btc",
+      "buy_price": 51800,
+      "selling_price": 51746
+    },
+    {
+      "label": "bta",
+      "buy_price": 3.30,
+      "selling_price": 3.29
+    }
+  ],
+  "wallet": {
+    "owner": "5a3084213fa720170001d05f",
+    "savings": [
+      {
+        "label": "blr",
+        "amount": 44075
+      },
+      {
+        "label": "bta",
+        "amount": 0
+      },
+      {
+        "label": "btc",
+        "amount": 1
+      }
+    ],
+    "transactions": [
+      {
+        "type": "buy",
+        "currency": "btc",
+        "amount": 1,
+        "timestamp": "2017-12-13T03:12:31.821"
+      }
+    ]
+  }
+}

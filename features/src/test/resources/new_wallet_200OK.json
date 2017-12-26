@@ -1,18 +1,3 @@
 {
-  "owner": "5a309a0f3fa720170001d063",
-  "savings": [
-    {
-      "name": "Real",
-      "amount": 100000
-    },
-    {
-      "name": "Brita",
-      "amount": 0
-    },
-    {
-      "name": "Bitcoin",
-      "amount": 0
-    }
-  ],
-  "transactions": []
+  "owner": "5a309a0f3fa720170001d063"
 }
