@@ -45,17 +45,11 @@ class WalletActivity : AppCompatActivity(),
     val entriesAdapter = WalletEntriesAdapter()
 
     override fun showLoading() = Action {
-        pullToRefresh.apply {
-            isRefreshing = true
-            isEnabled = true
-        }
+        pullToRefresh.isRefreshing = true
     }
 
     override fun hideLoading() = Action {
-        pullToRefresh.apply {
-            isRefreshing = false
-            isEnabled = true
-        }
+        pullToRefresh.isRefreshing = false
     }
 
     override fun reportNetworkingError(issue: NetworkingIssue) = Action {
@@ -95,7 +89,8 @@ class WalletActivity : AppCompatActivity(),
     private fun setupViews() {
 
         val manager = LinearLayoutManager(this).apply {
-            initialPrefetchItemCount = 4
+            initialPrefetchItemCount = PREFETCH_ITEMS
+            isItemPrefetchEnabled = true
             isAutoMeasureEnabled = true
         }
 
@@ -154,6 +149,7 @@ class WalletActivity : AppCompatActivity(),
 
     private companion object {
         val TAG = WalletActivity::class.simpleName
+        val PREFETCH_ITEMS = 4
     }
 
 }
