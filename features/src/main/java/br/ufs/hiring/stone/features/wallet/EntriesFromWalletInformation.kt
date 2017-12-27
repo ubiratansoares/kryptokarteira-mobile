@@ -1,9 +1,9 @@
 package br.ufs.hiring.stone.features.wallet
 
 import br.ufs.hiring.stone.domain.*
+import br.ufs.hiring.stone.features.util.ISO8601
 import br.ufs.hiring.stone.features.wallet.EntryType.*
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -126,15 +126,10 @@ object EntriesFromWalletInformation {
                     type = target,
                     currency = currency.name,
                     transcationType = formattedOperation(type),
-                    formattedDate = formattedDate(transaction.timestamp),
+                    formattedDate = ISO8601.asBrazillianDateFormat(transaction.timestamp),
                     formattedTotal = "$amount ${currency.label.toUpperCase()}"
             )
         }
-    }
-
-    private fun formattedDate(timestamp: Date): String {
-        val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        return formatter.format(timestamp)
     }
 
     private fun formattedOperation(type: TransactionType): String {

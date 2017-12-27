@@ -58,8 +58,22 @@ object Fixtures {
                         ownerId = owner,
                         amount = 1.0f,
                         type = "buy",
-                        timestamp = "2017-12-13T03:12:31.821",
+                        timestamp = "2017-12-10T03:00:00.000",
                         currency = "btc"
+                ),
+                TransactionRow(
+                        ownerId = owner,
+                        amount = 110f,
+                        type = "buy",
+                        timestamp = "2017-12-14T03:30:00.000",
+                        currency = "bta"
+                ),
+                TransactionRow(
+                        ownerId = owner,
+                        amount = 100f,
+                        type = "sell",
+                        timestamp = "2017-12-14T04:00:00.000",
+                        currency = "bta"
                 )
         )
     }
