@@ -89,7 +89,7 @@ class EntriesFromWalletInformationTests {
                 .matches { cardFooters(it) == sectionsCount }
                 .matches { blockHeadlines(it) == sectionsCount }
     }
-    
+
     private fun firstAsTransactionEntry(entries: List<EntryModel>) =
             entries.first { it is TransactionEntry } as TransactionEntry
 

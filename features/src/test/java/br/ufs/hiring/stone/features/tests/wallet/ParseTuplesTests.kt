@@ -2,7 +2,6 @@ package br.ufs.hiring.stone.features.tests.wallet
 
 import br.ufs.architecture.core.errors.InfrastructureError.LocalDatabaseAccessError
 import br.ufs.hiring.stone.data.database.TransactionRow
-import br.ufs.hiring.stone.domain.TransactionType
 import br.ufs.hiring.stone.features.tests.fixtures.Fixtures
 import br.ufs.hiring.stone.features.wallet.ParseTuples
 import org.assertj.core.api.Assertions.assertThat
@@ -39,11 +38,11 @@ class ParseTuplesTests {
         }
 
         expected.transactions.forEachIndexed { index, transaction ->
+            val label = transaction.currency.label
             val row = transactionsRows[index]
             assertThat(row.ownerId).isEqualTo(owner)
-            assertThat(row.currency).isEqualTo(transaction.currency.label)
+            assertThat(row.currency).isEqualTo(label)
             assertThat(row.amount).isEqualTo(transaction.amount)
-            assertThat(row.type).isEqualTo(TransactionType.From("buy").toString())
             assertThat(transaction.timestamp).isNotNull()
         }
     }
