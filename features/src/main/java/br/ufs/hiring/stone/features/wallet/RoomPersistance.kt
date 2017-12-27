@@ -1,6 +1,5 @@
 package br.ufs.hiring.stone.features.wallet
 
-import android.util.Log
 import br.ufs.architecture.core.errors.InfrastructureError
 import br.ufs.hiring.stone.data.database.*
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
@@ -19,11 +18,10 @@ import io.reactivex.schedulers.Schedulers
 
 class RoomPersistance(
         private val storage: WalletOwnerStorage,
-        private val database: SnapshotsDatabase,
+        private val dao: SnapshotDAO,
         private val worker: Scheduler = Schedulers.trampoline()) : OfflineHomeSupport {
 
     override fun previousInformation(): Observable<HomeInformation> {
-        val dao = database.dao()
         return dao
                 .lastestSnapshot()
                 .subscribeOn(worker)
@@ -61,7 +59,6 @@ class RoomPersistance(
         }
 
         try {
-            val dao = database.dao()
             if (!dao.lastestSnapshot().isEmpty.blockingGet()) {
                 dao.update(brokings, savings, transactions)
             } else {
@@ -69,7 +66,6 @@ class RoomPersistance(
             }
 
         } catch (exp: Throwable) {
-            Log.e(TAG, exp.message)
             throw InfrastructureError.LocalDatabaseAccessError
         }
     }

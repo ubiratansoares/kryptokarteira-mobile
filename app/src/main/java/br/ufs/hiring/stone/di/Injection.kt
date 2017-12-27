@@ -4,7 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import br.ufs.architecture.core.presentation.behaviors.BehaviorsPresenter
 import br.ufs.hiring.stone.BuildConfig
-import br.ufs.hiring.stone.features.wallet.RoomPersistance
+import br.ufs.hiring.stone.data.database.SnapshotDAO
 import br.ufs.hiring.stone.data.database.SnapshotsDatabase
 import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
@@ -16,6 +16,7 @@ import br.ufs.hiring.stone.domain.ReclaimGiveaway
 import br.ufs.hiring.stone.domain.RetrieveHomeInformation
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
+import br.ufs.hiring.stone.features.wallet.RoomPersistance
 import br.ufs.hiring.stone.features.wallet.WalletInfrastructure
 import br.ufs.hiring.stone.features.wallet.WalletScreen
 import com.github.salomonbrys.kodein.*
@@ -41,10 +42,15 @@ class Injection(private val context: Context) {
             WebServiceFactory.create(debuggable = BuildConfig.DEBUG)
         }
 
-        bind<SnapshotsDatabase>() with singleton {
+        bind<SnapshotsDatabase>(DB) with singleton {
             Room.databaseBuilder(context, SnapshotsDatabase::class.java, "snapshots-db")
                     .fallbackToDestructiveMigration()
                     .build()
+        }
+
+        bind<SnapshotDAO>() with provider {
+            val db: SnapshotsDatabase = instance(DB)
+            db.dao()
         }
 
         bind<WalletOwnerStorage>() with singleton {
@@ -70,7 +76,7 @@ class Injection(private val context: Context) {
         bind<OfflineHomeSupport>() with provider {
             RoomPersistance(
                     storage = instance(),
-                    database = instance(),
+                    dao = instance(),
                     worker = instance(WORKER)
             )
         }
@@ -107,6 +113,7 @@ class Injection(private val context: Context) {
     companion object {
         val WORKER = "worker"
         val UITHREAD = "main"
+        val DB = "database"
     }
 
 }
