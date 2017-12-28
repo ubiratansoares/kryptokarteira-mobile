@@ -62,7 +62,7 @@ class WalletInfrastructureTests {
 
         infrastructure.execute()
                 .test()
-                .assertError { it == InfrastructureError.UndesiredResponse }
+                .assertError { it == InfrastructureError.ClientIssue(404) }
     }
 
     @Test fun `should integrate handling error 5XY`() {

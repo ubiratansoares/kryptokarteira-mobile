@@ -1,8 +1,6 @@
 package br.ufs.hiring.stone.features.tests.onboarding
 
-import br.ufs.architecture.core.errors.InfrastructureError
-import br.ufs.architecture.core.errors.InfrastructureError.RemoteSystemDown
-import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
+import br.ufs.architecture.core.errors.InfrastructureError.*
 import br.ufs.architecture.core.errors.NetworkingIssue
 import br.ufs.hiring.stone.data.FileFromResources
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
@@ -74,7 +72,9 @@ class OnboardingInfrastructureTests {
 
         infrastructure.now()
                 .test()
-                .assertError { it == UndesiredResponse }
+                .assertError {
+                    it == ClientIssue(404)
+                }
     }
 
     @Test fun `should integrate handling error 5XY`() {
@@ -108,12 +108,12 @@ class OnboardingInfrastructureTests {
 
         whenever(storage.storeOwner(anyString()))
                 .then {
-                    throw InfrastructureError.StorageAccessError
+                    throw StorageAccessError
                 }
 
         infrastructure.now()
                 .test()
-                .assertError { it == InfrastructureError.StorageAccessError }
+                .assertError { it == StorageAccessError }
 
     }
 

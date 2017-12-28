@@ -2,7 +2,6 @@ package br.ufs.architecture.core.infrastructure.errorhandlers
 
 import br.ufs.architecture.core.errors.InfrastructureError
 import br.ufs.architecture.core.errors.InfrastructureError.RemoteSystemDown
-import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
@@ -33,7 +32,7 @@ class RestErrorsHandler : ObservableTransformer<Any, Any> {
     private fun mapErrorWith(code: Int): InfrastructureError {
         return when (code) {
             in 500..511 -> RemoteSystemDown
-            else -> UndesiredResponse
+            else -> InfrastructureError.ClientIssue(code)
         }
     }
 

@@ -1,7 +1,7 @@
 package br.ufs.architecture.core.tests.errorhandlers
 
+import br.ufs.architecture.core.errors.InfrastructureError.ClientIssue
 import br.ufs.architecture.core.errors.InfrastructureError.RemoteSystemDown
-import br.ufs.architecture.core.errors.InfrastructureError.UndesiredResponse
 import br.ufs.architecture.core.infrastructure.errorhandlers.RestErrorsHandler
 import br.ufs.architecture.core.tests.util.Fixtures
 import io.reactivex.Observable
@@ -38,7 +38,7 @@ class RestErrorsHandlerTests {
 
         badRequest.compose(handler)
                 .test()
-                .assertError(UndesiredResponse::class.java)
+                .assertError(ClientIssue::class.java)
     }
 
     @Test fun `should not handle any other errros`() {

@@ -6,8 +6,11 @@ package br.ufs.architecture.core.errors
  *
  */
 
+typealias StatusCode = Int
+
 sealed class InfrastructureError : Throwable() {
 
+    data class ClientIssue(val code: StatusCode) : InfrastructureError()
     object RemoteSystemDown : InfrastructureError()
     object UndesiredResponse : InfrastructureError()
     object StorageAccessError : InfrastructureError()
