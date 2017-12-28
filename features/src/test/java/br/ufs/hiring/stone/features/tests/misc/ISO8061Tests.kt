@@ -1,4 +1,4 @@
-package br.ufs.hiring.stone.features.tests.utilities
+package br.ufs.hiring.stone.features.tests.misc
 
 import br.ufs.hiring.stone.features.util.ISO8601
 import org.assertj.core.api.Assertions.assertThat
