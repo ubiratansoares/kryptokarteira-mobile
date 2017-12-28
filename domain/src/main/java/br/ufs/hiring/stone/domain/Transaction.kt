@@ -10,6 +10,6 @@ import java.util.*
 data class Transaction(
         val type: TransactionType,
         val currency: Currency,
-        val timestamp: Date,
-        val amount: Float
+        val amount: Float,
+        val timestamp: Date = Calendar.getInstance().time
 )
