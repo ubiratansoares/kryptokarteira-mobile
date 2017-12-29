@@ -50,7 +50,7 @@ class NewTransactionActivity : AppCompatActivity(),
 
     private val subscriptions by lazy { CompositeDisposable() }
 
-    private val dialog by lazy {
+    val dialog by lazy {
         MaterialDialog.Builder(this)
                 .cancelable(false)
                 .customView(R.layout.view_transaction_submission, true)
@@ -100,7 +100,7 @@ class NewTransactionActivity : AppCompatActivity(),
     }
 
     override fun hideErrorState() = Action {
-        hideAllOtherViews()
+        hideAllViews()
     }
 
     private fun setupViews() {
@@ -130,20 +130,19 @@ class NewTransactionActivity : AppCompatActivity(),
         val execution = screen.performTransaction(amount)
                 .compose(presenter)
                 .subscribe(
-                        {
-                            toast("Transação efetuada com sucesso!")
-                            done()
-                        },
-                        {
-                            when (it) {
-                                is TransactionNotAllowed -> reportNotAllowed()
-                                is InvalidTransactionParameters -> reportInconsistency()
-                                else -> Log.e(TAG, it.toString())
-                            }
-                        }
+                        { done() },
+                        { feedbackForTransactionError(it) }
                 )
 
         subscriptions.add(execution)
+    }
+
+    private fun feedbackForTransactionError(it: Throwable) {
+        when (it) {
+            is TransactionNotAllowed -> reportNotAllowed()
+            is InvalidTransactionParameters -> reportInconsistency()
+            else -> Log.e(TAG, it.toString())
+        }
     }
 
     private fun reportInconsistency() {
@@ -157,19 +156,22 @@ class NewTransactionActivity : AppCompatActivity(),
     }
 
     private fun backToSubmissionState() {
-        showAllOtherViews()
+        showAllViews()
         dialog.dismiss()
     }
 
-    private fun showAllOtherViews() {
+    private fun showAllViews() {
         transactionScreenRoot.visibility = View.VISIBLE
     }
 
-    private fun hideAllOtherViews() {
+    private fun hideAllViews() {
         transactionScreenRoot.visibility = View.INVISIBLE
     }
 
-    private fun done() = finish()
+    private fun done() {
+        toast("Transação efetuada com sucesso!")
+        finish()
+    }
 
     private fun toogleButton() {
         val hidden = amountInput.text?.toString().isNullOrEmpty()
