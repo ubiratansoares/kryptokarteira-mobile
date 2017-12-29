@@ -1,7 +1,7 @@
 # Krypto Karteira Mobile
  
 > This is a practical project for an application to Android Software 
-  Engineer position at Stone Payments. Check all details below
+  Engineer position. Check all details below
 
 ## Why
 
@@ -30,7 +30,7 @@ build Android applications
 - Rock-solid reactive architecture, powered with MVVM + RxJava2 with very unique approach
 - Dependency Injection powered by KodeIn
 - Massive test coverage, using both local JVM (JUnit and Roboletric) 
-and Instrumentation (Espresso) test frameworks
+and Instrumentation (Espresso - WIP) test frameworks
 - ETC
 
 ## Setup
