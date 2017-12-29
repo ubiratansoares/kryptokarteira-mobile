@@ -17,5 +17,6 @@
     <string name="toast_onboard_success">Cadastrado com sucesso!</string>
     <string name="button_buy">COMPRAR</string>
     <string name="button_sell">VENDER</string>
+    <string name="btn_new_transaction">CONFIRMAR</string>
 
 </resources>
