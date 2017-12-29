@@ -25,7 +25,7 @@ class TransactionInfrastructure(
     override fun perform(desired: Transaction): Completable {
         return Observable
                 .just(storage.retrieveOwner())
-                .unsubscribeOn(worker)
+                .subscribeOn(worker)
                 .flatMap { webService.transaction(it, ToTransactionBody(desired)) }
                 .compose(InfraErrorsHandler())
                 .map { it as TransactionResultPayload }
