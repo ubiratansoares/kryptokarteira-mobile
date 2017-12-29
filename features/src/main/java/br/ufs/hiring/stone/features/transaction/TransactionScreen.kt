@@ -31,7 +31,6 @@ class TransactionScreen(
                 screenTitle = "Nova transação",
                 currencyName = actualCurrency.name.toUpperCase(),
                 operationName = formatTransactionName().toUpperCase()
-
         )
     }
 

@@ -6,8 +6,9 @@
     <string name="error_internet_connection">Houve um erro de conectividade</string>
 
     <string name="snackaction_retry">TENTAR NOVAMENTE</string>
+    <string name="snackaction_allclear">ENTENDI</string>
     <string name="snackaction_done">FECHAR</string>
-    <string name="snacktext_internet_connection">Verifique sua conexão Wifi ou móvel</string>
+    <string name="snacktext_internet_connection">Erro de conexão. Verifique sua conexão Wifi ou móvel</string>
     <string name="snacktext_servers_down">Devemos estar de volta em alguns instantes</string>
     <string name="snacktext_undesired_response">Repita essa operação mais tarde\n</string>
     <string name="text_headline">Esse é seu primeiro acesso\ne sua KryptoKarteira começa com</string>
@@ -18,5 +19,14 @@
     <string name="button_buy">COMPRAR</string>
     <string name="button_sell">VENDER</string>
     <string name="btn_new_transaction">CONFIRMAR</string>
+    <string name="title_transaction_submission_error">Um erro aconteceu</string>
+    <string name="title_transaction_submission_success">Transação efetuada!</string>
+    <string name="message_submission_success">Sua transação foi efetuada com sucesso e está registrada na sua KryptoKarteira</string>
+    <string name="title_submission_default">Solicitando ...</string>
+    <string name="body_submission_default">Sua transação está sendo requisitada</string>
+    <string name="toast_error_at_operation">Houve um erro ao realizar a operação, estamos trabalhando no problema</string>
+    <string name="toast_internet_error">Verifique sua conexão com a Internet</string>
+    <string name="snacktext_invalid_transaction">Essa não é uma transação válida. Confira valores.</string>
+    <string name="snacktext_notallowed_transaction">Não é possível executar essa transação. Confira valores.</string>
 
 </resources>

@@ -78,8 +78,6 @@
         android:text="@string/btn_new_transaction"
         android:visibility="gone"
         android:enabled="false"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         android:theme="@style/GreenButton" />
 
 </LinearLayout>
