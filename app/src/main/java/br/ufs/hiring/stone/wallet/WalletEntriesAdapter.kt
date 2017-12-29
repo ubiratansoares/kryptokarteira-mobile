@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.ufs.hiring.stone.R
+import br.ufs.hiring.stone.domain.TransactionType.Buy
+import br.ufs.hiring.stone.domain.TransactionType.Sell
 import br.ufs.hiring.stone.features.wallet.*
 import br.ufs.hiring.stone.features.wallet.EntryType.*
 import br.ufs.hiring.stone.features.wallet.HeadlineType.Block
 import br.ufs.hiring.stone.features.wallet.HeadlineType.Trade
+import br.ufs.hiring.stone.transaction.NewTransactionActivity
 import kotlinx.android.synthetic.main.view_entry_block_headline.view.*
+import kotlinx.android.synthetic.main.view_entry_calltoactions.view.*
 import kotlinx.android.synthetic.main.view_entry_investment.view.*
 import kotlinx.android.synthetic.main.view_entry_trade_value.view.*
 import kotlinx.android.synthetic.main.view_entry_transaction_middle.view.*
@@ -32,10 +36,11 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
         notifyDataSetChanged()
     }
 
-    fun addModels(entries: List<EntryModel>){
+    fun addModels(entries: List<EntryModel>) {
         models.addAll(entries)
         notifyDataSetChanged()
     }
+
     override fun getItemCount(): Int {
         return models.size
     }
@@ -55,6 +60,7 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
             is InvestimentHolder -> holder.bind(model as Investiment)
             is TradeValueHolder -> holder.bind(model as TradeValue)
             is TransactionHolder -> holder.bind(model as TransactionEntry)
+            is CallToActionHolder -> holder.bind(model as CallToAction)
             is NoData -> Unit
             else -> throw IllegalArgumentException("Invalid ViewType for position")
         }
@@ -92,7 +98,7 @@ class WalletEntriesAdapter : RecyclerView.Adapter<Holder>() {
 
     private fun viewHolderForType(root: View, viewType: Int): Holder {
         return when (viewType) {
-            0 -> NoData(root)
+            0 -> CallToActionHolder(root)
             1, 3 -> HeadlineHolder(root)
             2 -> InvestimentHolder(root)
             4 -> TradeValueHolder(root)
@@ -160,6 +166,33 @@ class TransactionHolder(private val root: View) : Holder(root) {
             root.transactionType.text = transcationType
             root.transactionTotal.text = formattedTotal
         }
+    }
+}
+
+class CallToActionHolder(private val root: View) : Holder(root) {
+
+    fun bind(model: CallToAction) {
+
+        val origin = root.context
+
+        listOf(root.sellButton, root.buyButton)
+                .forEach {
+
+                    val operationType = when (it.id) {
+                        R.id.buyButton -> Buy.toString()
+                        R.id.sellButton -> Sell.toString()
+                        else -> throw IllegalArgumentException("Not a call-to-action")
+                    }
+
+                    val toTransaction = NewTransactionActivity.launchIntent(
+                            origin,
+                            model.currencyLabel,
+                            operationType
+                    )
+
+                    it.setOnClickListener { origin.startActivity(toTransaction) }
+                }
+
     }
 }
 

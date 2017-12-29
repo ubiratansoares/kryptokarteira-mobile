@@ -72,7 +72,7 @@ object EntriesFromWalletInformation {
 
             entries += IntraCardSpace()
             entries += HorizontalLine()
-            entries += CallToAction()
+            entries += CallToAction(it.currency.label)
             entries += CardFooter()
             entries += BetweenCardsSpace()
         }

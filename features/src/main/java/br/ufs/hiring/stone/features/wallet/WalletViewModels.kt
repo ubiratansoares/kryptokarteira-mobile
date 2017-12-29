@@ -8,7 +8,7 @@ package br.ufs.hiring.stone.features.wallet
 
 sealed class EntryModel
 
-class CallToAction : EntryModel()
+class CallToAction(val currencyLabel: String) : EntryModel()
 class CardHeader : EntryModel()
 class CardFooter : EntryModel()
 class IntraCardSpace : EntryModel()
@@ -45,3 +45,8 @@ sealed class HeadlineType {
     object Block : HeadlineType()
     object Trade : HeadlineType()
 }
+
+class NewTransactionScreenData(
+        val transactionType: String,
+        val currencyLabel: String
+)

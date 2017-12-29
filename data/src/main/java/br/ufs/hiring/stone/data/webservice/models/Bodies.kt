@@ -11,5 +11,5 @@ import com.google.gson.annotations.SerializedName
 class NewTransactionBody(
         @SerializedName("type") val operationType: String,
         val currency: String,
-        @SerializedName("quantity") val quantity: Float
+        @SerializedName("amount") val quantity: Float
 )

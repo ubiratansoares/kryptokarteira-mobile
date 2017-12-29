@@ -21,6 +21,11 @@
 
         <activity android:name=".wallet.WalletActivity" />
 
+        <activity
+            android:windowSoftInputMode="stateVisible"
+            android:name=".transaction.NewTransactionActivity"
+            android:theme="@style/AppTheme.ActionBar" />
+
     </application>
 
 </manifest>

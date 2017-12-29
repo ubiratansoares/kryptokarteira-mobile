@@ -24,7 +24,7 @@ interface KryptoKarteiraWebService {
     @GET("v1/home/{walletId}/info")
     fun home(@Path("walletId") owner: String): Observable<HomePayload>
 
-    @POST("v1/home/{walletId}/transaction")
+    @POST("v1/wallet/{walletId}/transaction")
     fun transaction(
             @Path("walletId") owner: String,
             @Body description: NewTransactionBody): Observable<TransactionResultPayload>

@@ -10,12 +10,11 @@ import br.ufs.hiring.stone.data.storage.HawkOwnerStorage
 import br.ufs.hiring.stone.data.storage.WalletOwnerStorage
 import br.ufs.hiring.stone.data.webservice.KryptoKarteiraWebService
 import br.ufs.hiring.stone.data.webservice.WebServiceFactory
-import br.ufs.hiring.stone.domain.HomeInformationCoordinator
-import br.ufs.hiring.stone.domain.OfflineHomeSupport
-import br.ufs.hiring.stone.domain.ReclaimGiveaway
-import br.ufs.hiring.stone.domain.RetrieveHomeInformation
+import br.ufs.hiring.stone.domain.*
 import br.ufs.hiring.stone.features.onboarding.OnboardingInfrastructure
 import br.ufs.hiring.stone.features.onboarding.OnboardingScreen
+import br.ufs.hiring.stone.features.transaction.TransactionInfrastructure
+import br.ufs.hiring.stone.features.transaction.TransactionScreen
 import br.ufs.hiring.stone.features.wallet.RoomPersistance
 import br.ufs.hiring.stone.features.wallet.WalletInfrastructure
 import br.ufs.hiring.stone.features.wallet.WalletScreen
@@ -88,6 +87,14 @@ class Injection(private val context: Context) {
             )
         }
 
+        bind<NewTrasaction>() with provider {
+            TransactionInfrastructure(
+                    storage = instance(),
+                    webService = instance(),
+                    worker = instance(WORKER)
+            )
+        }
+
         bind<OnboardingScreen>() with provider {
             OnboardingScreen(
                     usecase = instance(),
@@ -97,6 +104,13 @@ class Injection(private val context: Context) {
 
         bind<WalletScreen>() with provider {
             WalletScreen(
+                    usecase = instance(),
+                    uiScheduler = instance(UITHREAD)
+            )
+        }
+
+        bind<TransactionScreen>() with provider {
+            TransactionScreen(
                     usecase = instance(),
                     uiScheduler = instance(UITHREAD)
             )
